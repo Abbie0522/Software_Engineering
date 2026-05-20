@@ -1,5 +1,5 @@
-# Fitness Booking System
-This is a web-based Fitness Booking System that designed to help users to manage their fitness activities in a more organized and convenient way. The system provides a smooth and user-friendly experience that allows users to plan their fitness journey, monitor their personal progress and access fitness-related services in a more efficiently way. It aims to improve overall user engagement and encourage a healthier and more consistent lifestyle.
+# Fitness Workout Tracking System
+This is a web-based Fitness Workout Tracking System designed to help users manage their workout activities in a more organized and convenient way. The system provides a smooth and user-friendly experience that allows users to plan workout schedules, track completed workouts and monitor personal fitness progress more efficiently. It aims to improve workout consistency, encourage healthier habits and support users in maintaining a more active lifestyle.
 
 ---
 
@@ -28,9 +28,20 @@ Student Information:
 ## Team Member and Roles
 | Name | Role | Responsibilities |
 |------|------|-----------------|
-| **Abbie** | ? | ? |
-| **TseThing** | ? | ? |
-| **ShuWen** | Developer | ? |
-| **Fion** | Developer | ? |
+| **Abbie** | Product Owner | 1. Defined project requirements and prioritized system features<br>2. Managed authentication and user system including login<br>3. Registration and user data handling |
+| **TseThing** | Scrum Master | 1. Coordinated sprint workflow and team progress<br> 2. Managed UI design<br>3. Responsive layout<br>4. Filtering features and system integration testing |
+| **ShuWen** | Developer | 1. Developed workout tracking and reporting system including workout completion tracking, history records, summary reports<br>2. Weight tracking features |
+| **Fion** | Developer | 1. Developed workout scheduling system including add, edit, delete workout functions<br>2. Weekly schedule display |
 
 ---
+
+## Problem Statement
+**Client Scenario:**
+
+
+**Business Needs:**
+
+
+**Target Users:**
+
+

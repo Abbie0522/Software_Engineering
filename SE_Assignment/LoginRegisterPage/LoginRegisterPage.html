@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login & Register</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:#000000;
+    }
+
+    .container{
+      width:380px;
+      background:white;
+      padding:35px;
+      border-radius:15px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    h2{
+      text-align:center;
+      margin-bottom:25px;
+      color:#333;
+    }
+
+    .input-group{
+      margin-bottom:18px;
+    }
+
+    .input-group label{
+      display:block;
+      margin-bottom:6px;
+      color:#555;
+      font-size:14px;
+    }
+
+    .input-group input{
+      width:100%;
+      padding:12px;
+      border:1px solid #ccc;
+      border-radius:8px;
+      outline:none;
+      transition:0.3s;
+    }
+
+    .input-group input:focus{
+      border-color:#4a4a4a;
+    }
+
+    button{
+      width:100%;
+      padding:12px;
+      border:none;
+      border-radius:8px;
+      background:#4d4d4d;
+      color:white;
+      font-size:16px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    button:hover{
+      background:#8f8f8f;
+    }
+
+    .switch{
+      text-align:center;
+      margin-top:15px;
+      font-size:14px;
+    }
+
+    .switch span{
+      color:#000000;
+      cursor:pointer;
+      font-weight:bold;
+    }
+
+    #registerForm{
+      display:none;
+    }
+
+    .dashboard{
+      display:none;
+      text-align:center;
+    }
+
+    .dashboard h1{
+      margin-bottom:15px;
+      color:#333;
+    }
+
+    .dashboard p{
+      margin-bottom:20px;
+      color:#555;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div id="loginForm">
+
+      <h2>Login</h2>
+
+      <div class="input-group">
+        <label>Email</label>
+        <input type="email" id="loginEmail" placeholder="Enter your email">
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" id="loginPassword" placeholder="Enter your password">
+      </div>
+
+      <button onclick="login()">Login</button>
+
+      <div class="switch">
+        Don't have an account?
+        <span onclick="showRegister()">Register</span>
+      </div>
+
+    </div>
+
+    <div id="registerForm">
+
+      <h2>Register</h2>
+
+      <div class="input-group">
+        <label>Username</label>
+        <input type="text" id="registerUsername" placeholder="Enter username">
+      </div>
+
+      <div class="input-group">
+        <label>Email</label>
+        <input type="email" id="registerEmail" placeholder="Enter email">
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" id="registerPassword" placeholder="Enter password">
+      </div>
+
+      <div class="input-group">
+        <label>Confirm Password</label>
+        <input type="password" id="confirmPassword" placeholder="Confirm password">
+      </div>
+
+      <button onclick="register()">Register</button>
+
+      <div class="switch">
+        Already have an account?
+        <span onclick="showLogin()">Login</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    // Check Login Status
+    window.onload = function(){
+      let loggedInUser = localStorage.getItem("loggedInUser");
+      if(loggedInUser){
+        showDashboard(loggedInUser);
+      }
+    };
+
+    // Show Register
+    function showRegister(){
+      document.getElementById("loginForm").style.display = "none";
+      document.getElementById("registerForm").style.display = "block";
+    }
+
+    // Show Login
+    function showLogin(){
+      document.getElementById("registerForm").style.display = "none";
+      document.getElementById("loginForm").style.display = "block";
+    }
+
+    // Register Function
+    function register(){
+      let username = document.getElementById("registerUsername").value;
+      let email = document.getElementById("registerEmail").value;
+      let password = document.getElementById("registerPassword").value;
+
+      localStorage.setItem("username", username);
+      localStorage.setItem("email", email);
+      localStorage.setItem("password", password);
+
+      alert("Registration Successful!");
+
+      document.getElementById("registerUsername").value = "";
+      document.getElementById("registerEmail").value = "";
+      document.getElementById("registerPassword").value = "";
+      document.getElementById("confirmPassword").value = "";
+
+      setTimeout(() => {
+        showLogin();
+      }, 1000);
+    }
+
+    // Login Function
+    function login(){
+      let email = document.getElementById("loginEmail").value;
+      let password = document.getElementById("loginPassword").value;
+
+      let savedEmail = localStorage.getItem("email");
+      let savedPassword = localStorage.getItem("password");
+      let savedUsername = localStorage.getItem("username");
+
+      let currentUser =
+        email === "admin@gmail.com"
+        ? "Admin"
+        : savedUsername;
+
+      localStorage.setItem("loggedInUser", currentUser);
+      alert("Login Successful!");
+      showDashboard(currentUser);
+    }
+  </script>
+
+</body>
+</html> 

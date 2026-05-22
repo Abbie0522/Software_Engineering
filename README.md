@@ -37,11 +37,36 @@ Student Information:
 
 ## Problem Statement
 **Client Scenario:**
-
+Many individuals still rely on manual methods like notebooks, spreadsheets or memory to manage their workout routines and fitness progress. This often leads to several problems, including:
+- Difficult to organize the workout schedules effectively
+- Inconsistent workout tracking and progress monitoring
+- Lack of structured workout planning
+- Difficulty in reviewing workout history and fitness improvements
 
 **Business Needs:**
-
+Users need a digital fitness workout tracking system that allows them to:
+- Manage workout schedules more efficiently
+- Track completed workouts and fitness activities
+- View workout history and weekly progress reports
+- Monitor fitness records like weight changes and workout consistency
 
 **Target Users:**
+- Individuals managing personal fitness routines
+- Gym beginners looking for structured workout planning
+- Users who want to monitor workout progress and workout consistency
 
+---
 
+##Product Vision and Scope
+Our Vision: To provide a user-friendly fitness workout tracking system that helps users plan workout schedules, monitor fitness progress and maintain a consistent and healthy lifestyle.
+
+Scope:
+- User registration and login
+- Workout schedule management
+- Add, edit and delete workout plans
+- Weekly workout schedule display
+- Workout completion tracking
+- Workout history records
+- Weekly progress reports
+- Weight tracking
+- Responsive design for mobile and desktop

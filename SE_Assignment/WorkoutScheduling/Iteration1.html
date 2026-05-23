@@ -470,6 +470,26 @@ document.getElementById('modal-add').addEventListener('click', () => {
   renderGrid();
 });
 
+function validateDuration() {
+  const input = document.getElementById('duration-input');
+  const hint = document.getElementById('duration-hint');
+  const val = parseInt(input.value);
+  if (input.value === '' || isNaN(val)) {
+    hint.textContent = 'Please enter a duration.';
+    return false;
+  } else if (val < 1) {
+    hint.textContent = 'Minimum duration is 1 minute.';
+    return false;
+  } else if (val > 120) {
+    hint.textContent = 'Maximum duration is 120 minutes.';
+    return false;
+  }
+  hint.textContent = '';
+  return true;
+}
+ 
+document.getElementById('duration-input').addEventListener('input', validateDuration);
+
 document.getElementById('modal-cancel').addEventListener('click', closeModal);
 document.getElementById('modal-close').addEventListener('click', closeModal);
 document.getElementById('modal-backdrop').addEventListener('click', e => {

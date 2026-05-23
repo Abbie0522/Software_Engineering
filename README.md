@@ -57,7 +57,7 @@ Users need a digital fitness workout tracking system that allows them to:
 
 ---
 
-##Product Vision and Scope
+## Product Vision and Scope
 Our Vision: To provide a user-friendly fitness workout tracking system that helps users plan workout schedules, monitor fitness progress and maintain a consistent and healthy lifestyle.
 
 Scope:
@@ -72,3 +72,27 @@ Scope:
 - Responsive design for mobile and desktop
 
 Test Git 02
+
+---
+## System Overview
+
+---
+
+## User Stories
+| User Story ID | User Story | MoSCoW Priority |
+|--------------|------------|----------------|
+| US01 | As a gym beginner, I want to create an account and log in so that all my workout plans and progress are saved in one place instead of using paper notes. | Must Have |
+| US02 | As a busy university student, I want to schedule my workouts for the week so that I can balance exercise with my classes and avoid skipping sessions. | Must Have |
+| US03 | As a person trying to build a healthy habit, I want to see my weekly workout plan clearly so that I know what exercise to do each day without thinking too much. | Must Have |
+| US04 | As a user who loses motivation easily, I want to mark completed workouts so that I can feel a sense of achievement and stay consistent. | Must Have |
+| US05 | As a user who often changes plans, I want to edit or remove scheduled workouts so that my fitness routine stays flexible and realistic. | Should Have |
+| US06 | As a user who wants visible results, I want weekly progress reports so that I can know whether my workout effort is actually helping me improve. | Should Have |
+| US07 | As a user managing body fitness, I want to record my weight regularly so that I can compare changes and stay motivated. | Should Have |
+| US08 | As a user who works and studies in different places, I want the system to work on both mobile and desktop so that I can update workouts anytime. | Could Have |
+| US09 | As a user with many workout records, I want filtering features so that I can quickly find specific schedules or past activities. | Could Have |
+| US10 | As a smartwatch user, I want to connect fitness devices so that my workout data updates automatically without manual input. | Won’t Have |
+| US11 | As a social user, I want to share my workout achievements online so that I can stay motivated with friends. | Won’t Have |
+
+---
+
+

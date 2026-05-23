@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Workout Tracker - Iteration 2</title>
+</head>
+<body>
+  <h1>Workout Tracker</h1>
+
+  <!-- Workout List -->
+  <h2>Today's Workouts</h2>
+  <ul id="list"></ul>
+  <p id="progress"></p>
+
+  <hr>
+
+  <!-- Weight Tracking -->
+  <h2>Weight Tracking</h2>
+  <input type="number" id="weight-input" placeholder="Enter weight (kg)" step="0.1">
+  <button onclick="logWeight()">Log Weight</button>
+  <div id="weight-log"></div>
+
+  <hr>
+
+  <!-- Weekly Summary -->
+  <h2>Weekly Summary</h2>
+  <div id="summary"></div>
+
+  <hr>
+
+  <!-- History -->
+  <h2>History</h2>
+  <div id="history"></div>
+
+<script>
+  const workouts = ["Bench Press", "Pull-up", "Squat", "Plank"];
+  const today = new Date().toLocaleDateString();
+  const done = JSON.parse(localStorage.getItem(today) || '[]');
+
+  function render() {
+    document.getElementById('list').innerHTML = workouts.map((w, i) => `
+      <li>${w} ${done.includes(i)
+        ? '✓'
+        : `<button onclick="markDone(${i})">Done</button>`}
+      </li>`).join('');
+    document.getElementById('progress').textContent = done.length + ' / ' + workouts.length + ' completed';
+  }
+
+  function markDone(i) {
+    if (!done.includes(i)) done.push(i);
+    localStorage.setItem(today, JSON.stringify(done));
+    if (done.length === workouts.length) saveHistory();
+    render();
+    renderSummary();
+  }
+
+  function saveHistory() {
+    const h = JSON.parse(localStorage.getItem('history') || '[]');
+    if (!h.find(x => x.date === today)) {
+      h.unshift({ date: today, count: workouts.length });
+      localStorage.setItem('history', JSON.stringify(h));
+    }
+    renderHistory();
+  }
+
+  function renderHistory() {
+    const h = JSON.parse(localStorage.getItem('history') || '[]');
+    const el = document.getElementById('history');
+    el.innerHTML = h.length === 0
+      ? '<p>No history yet.</p>'
+      : h.map(x => `<p>${x.date} — ${x.count} workouts completed</p>`).join('');
+  }
+
+  // Weight tracking
+  function logWeight() {
+    const val = document.getElementById('weight-input').value;
+    if (!val) return;
+    const log = JSON.parse(localStorage.getItem('weight_log') || '[]');
+    log.unshift({ date: today, weight: val });
+    localStorage.setItem('weight_log', JSON.stringify(log));
+    document.getElementById('weight-input').value = '';
+    renderWeightLog();
+  }
+
+  function renderWeightLog() {
+    const log = JSON.parse(localStorage.getItem('weight_log') || '[]');
+    const el = document.getElementById('weight-log');
+    el.innerHTML = log.length === 0
+      ? '<p>No weight logged yet.</p>'
+      : log.map(x => `<p>${x.date} — ${x.weight} kg</p>`).join('');
+  }
+
+  // Weekly summary
+  function renderSummary() {
+    const h = JSON.parse(localStorage.getItem('history') || '[]');
+    const total = h.reduce((sum, x) => sum + x.count, 0);
+    const sessions = h.length;
+    document.getElementById('summary').innerHTML = `
+      <p>Total sessions completed: <b>${sessions}</b></p>
+      <p>Total workouts completed: <b>${total}</b></p>
+    `;
+  }
+
+  render();
+  renderHistory();
+  renderWeightLog();
+  renderSummary();
+</script>
+
+</body>
+</html>

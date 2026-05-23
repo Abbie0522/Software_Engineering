@@ -75,6 +75,17 @@ Test Git 02
 
 ---
 ## System Overview
+The **Fitness Workout Tracking System** is a web based application developed to help users manage workout schedules and monitor fitness progress in a more organized and efficient way. The system replaces manual methods such as notebooks or memory by providing a centralized digital platform for fitness management.
+
+The system includes the following main functions:
+- User Registration and Login to securely access personal workout information.
+- Workout Schedule Management to create, edit, delete, and view weekly workout plans.
+- Workout Completion Tracking to record completed exercises and maintain consistency.
+- Workout History and Weekly Reports to review past activities and evaluate progress.
+- Weight Tracking to monitor physical changes over time.
+- Responsive Design to support access from both desktop and mobile devices.
+
+Overall, the system aims to provide users with a structured and convenient way to plan workouts, track fitness activities, and maintain a healthier lifestyle.
 
 ---
 

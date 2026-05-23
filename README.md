@@ -106,4 +106,14 @@ Overall, the system aims to provide users with a structured and convenient way t
 
 ---
 
+## Features & Responsibilities
+| Member | Iteration 1 | Iteration 2 |
+|---|---|---|
+| Abbie | Create add workout functionality and workout list display | Add workout editing, deletion and validation |
+| Fion | Build weekly workout scheduling layout | Improve schedule management and usability |
+| Shuwen | Create workout tracking feature and completion status | Add weekly summary report and weight tracking |
+| Tse Thing | Design basic UI layout and responsive structure | Add filtering feature and improve responsive UI |
+
+---
+
 

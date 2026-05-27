@@ -168,17 +168,6 @@
       document.getElementById("loginForm").style.display = "block";
     }
 
-    // Get all registered users from localStorage
-    function getUsers(){
-      let users = localStorage.getItem("users");
-      return users ? JSON.parse(users) : [];
-    }
-
-    // Save all registered users to localStorage
-    function saveUsers(users){
-      localStorage.setItem("users", JSON.stringify(users));
-    }
-
     // Register Function
     function register(){
       let username = document.getElementById("registerUsername").value.trim();
@@ -211,17 +200,9 @@
         return;
       }
 
-      // Check for duplicate email
-      let users = getUsers();
-      let emailExists = users.some(u => u.email.toLowerCase() === email.toLowerCase());
-      if(emailExists){
-        alert("This email is already registered. Please use a different email.");
-        return;
-      }
-
-      // Save the new user into the users array
-      users.push({ username, email, password });
-      saveUsers(users);
+      localStorage.setItem("reg_username", username);
+      localStorage.setItem("reg_email", email);
+      localStorage.setItem("reg_password", password);
 
       alert("Registration Successful!");
 
@@ -250,19 +231,20 @@
         return;
       }
 
-      // Check admin credentials
+      let savedEmail = localStorage.getItem("reg_email");
+      let savedPassword = localStorage.getItem("reg_password");
+      let savedUsername = localStorage.getItem("reg_username");
+
+      // Check whether the email and password are correct and existed
       let isAdmin = (email === "admin@gmail.com" && password === "admin123");
+      let isUser  = (email === savedEmail && password === savedPassword);
 
-      // Check registered users
-      let users   = getUsers();
-      let matched = users.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
-
-      if(!isAdmin && !matched){
+      if(!isAdmin && !isUser){
         alert("Incorrect email or password.");
         return;
       }
 
-      let currentUser = isAdmin ? "Admin" : matched.username;
+      let currentUser = isAdmin ? "Admin" : savedUsername;
 
       alert("Login Successful!");
     }

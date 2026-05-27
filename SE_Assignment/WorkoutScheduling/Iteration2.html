@@ -631,18 +631,18 @@ const EXERCISES = {
     { name: 'Squats',         icon: '🦵' },
     { name: 'Pull-ups',       icon: '🙌' },
     { name: 'Shoulder Press', icon: '🔝' },
-    { name: 'Dumbbell Row',   icon: '💪' },
+    { name: 'Dumbbell Row',   icon: '🧎‍➡️' },
   ],
   cardio: [
     { name: 'Running',    icon: '🏃' },
     { name: 'Cycling',    icon: '🚴' },
     { name: 'Swimming',   icon: '🏊' },
-    { name: 'Jump Rope',  icon: '⚡' },
+    { name: 'Jump Rope',  icon: '🙂‍↕' },
     { name: 'Elliptical', icon: '🔄' },
     { name: 'Rowing',     icon: '🚣' },
   ],
   hiit: [
-    { name: 'Burpees',           icon: '🔥' },
+    { name: 'Burpees',           icon: '❤️‍🔥' },
     { name: 'Box Jumps',         icon: '📦' },
     { name: 'Kettlebell',        icon: '🔔' },
     { name: 'Battle Ropes',      icon: '🪢' },
@@ -906,7 +906,7 @@ document.getElementById('modal-add').addEventListener('click', () => {
   if (!validateDuration()) return;
   const customVal = document.getElementById('custom-name').value.trim();
   const name = customVal || selectedExercise.name;
-  const icon = customVal ? '🏃' : (selectedExercise.icon || '🏃');
+  const icon = customVal ? '🏆' : (selectedExercise.icon || '🏃');
   const duration = parseInt(document.getElementById('duration-input').value);
   const entry = { name, icon, duration, cat: selectedCat, done: false };
   if (!workouts[modalDay]) workouts[modalDay] = [];

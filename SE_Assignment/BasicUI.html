@@ -501,9 +501,18 @@
 <script>
   let users = JSON.parse(localStorage.getItem('ft_users') || 'null');
     if (!users) {
-    users = [];
-    localStorage.setItem('ft_users', JSON.stringify(users));
-  }
+      users = [];
+      localStorage.setItem('ft_users', JSON.stringify(users));
+    }
+
+    window.onload = function () {
+      const savedEmail = localStorage.getItem('ft_session');
+      if (savedEmail) {
+        const user = users.find(u => u.email === savedEmail);
+        if (user) { loginUser(user); return; }
+      }
+      showPage('auth');
+    };
 
   let currentUser = null;
   let workouts = [];
@@ -545,6 +554,7 @@
   function loginUser(user) {
     currentUser = user;
     workouts = JSON.parse(localStorage.getItem('ft_workouts_' + user.email) || '[]');
+    localStorage.setItem('ft_session', user.email);
     document.getElementById('nav-links').innerHTML = `
       <button onclick="showPage('schedule')" id="nav-schedule">Schedule</button>
       <button onclick="showPage('report')" id="nav-report">Report</button>
@@ -556,6 +566,7 @@
   function doLogout() {
     currentUser = null;
     workouts = [];
+    localStorage.removeItem('ft_session');
     document.getElementById('nav-links').innerHTML = '';
     document.getElementById('logout-btn').style.display = 'none';
     showPage('auth');

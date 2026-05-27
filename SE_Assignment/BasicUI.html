@@ -522,7 +522,7 @@
   function doLogin() {
     const email = document.getElementById('login-email').value.trim().toLowerCase();
     const pw    = document.getElementById('login-pw').value;
-    const user  = users.find(u => u.email.toLowerCase() === email && u.password === pw);
+    const user = users.find(u => u.email.toLowerCase() === email && u.password === btoa(pw));
     if (!user) { document.getElementById('login-error').classList.add('show'); return; }
     document.getElementById('login-error').classList.remove('show');
     loginUser(user);
@@ -536,7 +536,7 @@
     if (!name || !email || !pw) { errEl.textContent = 'All fields are required.'; errEl.classList.add('show'); return; }
     if (pw.length < 6) { errEl.textContent = 'Password must be at least 6 characters.'; errEl.classList.add('show'); return; }
     if (users.find(u => u.email.toLowerCase() === email)) { errEl.textContent = 'Email already registered.'; errEl.classList.add('show'); return; }
-    const user = { name, email, password: pw };
+    const user = { name, email, password: btoa(pw) };
     users.push(user);
     localStorage.setItem('ft_users', JSON.stringify(users));
     loginUser(user);

@@ -391,15 +391,14 @@
       <div id="login-form">
         <div class="form-group">
           <label>Email</label>
-          <input type="email" id="login-email" value="demo@fittrack.com" placeholder="you@example.com">
+          <input type="email" id="login-email" placeholder="you@example.com">
         </div>
         <div class="form-group">
           <label>Password</label>
-          <input type="password" id="login-pw" value="password" placeholder="Password">
+          <input type="password" id="login-pw" placeholder="Password">
         </div>
         <div class="error-msg" id="login-error">Invalid email or password.</div>
         <button class="btn-block" onclick="doLogin()">Login</button>
-        <p style="font-size:11px;color:#aaa;text-align:center;margin-top:10px">Demo: demo@fittrack.com / password</p>
       </div>
 
       <div id="register-form" style="display:none">
@@ -500,8 +499,12 @@
 </div>
 
 <script>
-  const DEMO_USERS = [{ name: 'Alex Johnson', email: 'demo@fittrack.com', password: 'password' }];
-  let users = JSON.parse(localStorage.getItem('ft_users') || 'null') || [...DEMO_USERS];
+  let users = JSON.parse(localStorage.getItem('ft_users') || 'null');
+    if (!users) {
+    users = [];
+    localStorage.setItem('ft_users', JSON.stringify(users));
+  }
+
   let currentUser = null;
   let workouts = [];
 

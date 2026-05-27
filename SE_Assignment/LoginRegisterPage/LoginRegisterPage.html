@@ -90,21 +90,6 @@
     #registerForm{
       display:none;
     }
-
-    .dashboard{
-      display:none;
-      text-align:center;
-    }
-
-    .dashboard h1{
-      margin-bottom:15px;
-      color:#333;
-    }
-
-    .dashboard p{
-      margin-bottom:20px;
-      color:#555;
-    }
   </style>
 </head>
 
@@ -171,14 +156,6 @@
   </div>
 
   <script>
-    // Check Login Status
-    window.onload = function(){
-      let loggedInUser = localStorage.getItem("loggedInUser");
-      if(loggedInUser){
-        showDashboard(loggedInUser);
-      }
-    };
-
     // Show Register
     function showRegister(){
       document.getElementById("loginForm").style.display = "none";
@@ -189,6 +166,17 @@
     function showLogin(){
       document.getElementById("registerForm").style.display = "none";
       document.getElementById("loginForm").style.display = "block";
+    }
+
+    // Get all registered users from localStorage
+    function getUsers(){
+      let users = localStorage.getItem("users");
+      return users ? JSON.parse(users) : [];
+    }
+
+    // Save all registered users to localStorage
+    function saveUsers(users){
+      localStorage.setItem("users", JSON.stringify(users));
     }
 
     // Register Function
@@ -223,9 +211,17 @@
         return;
       }
 
-      localStorage.setItem("reg_username", username);
-      localStorage.setItem("reg_email", email);
-      localStorage.setItem("reg_password", password);
+      // Check for duplicate email
+      let users = getUsers();
+      let emailExists = users.some(u => u.email.toLowerCase() === email.toLowerCase());
+      if(emailExists){
+        alert("This email is already registered. Please use a different email.");
+        return;
+      }
+
+      // Save the new user into the users array
+      users.push({ username, email, password });
+      saveUsers(users);
 
       alert("Registration Successful!");
 
@@ -254,24 +250,21 @@
         return;
       }
 
-      let savedEmail = localStorage.getItem("reg_email");
-      let savedPassword = localStorage.getItem("reg_password");
-      let savedUsername = localStorage.getItem("reg_username");
-
-      // Check whether the email and password are correct and existed
+      // Check admin credentials
       let isAdmin = (email === "admin@gmail.com" && password === "admin123");
-      let isUser  = (email === savedEmail && password === savedPassword);
 
-      if(!isAdmin && !isUser){
+      // Check registered users
+      let users   = getUsers();
+      let matched = users.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
+
+      if(!isAdmin && !matched){
         alert("Incorrect email or password.");
         return;
       }
 
-      let currentUser = isAdmin ? "Admin" : savedUsername;
+      let currentUser = isAdmin ? "Admin" : matched.username;
 
-      localStorage.setItem("loggedInUser", currentUser);
       alert("Login Successful!");
-      showDashboard(currentUser);
     }
   </script>
 

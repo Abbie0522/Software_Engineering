@@ -25,6 +25,86 @@
       --sidebar-w: 220px;
     }
 
+    :root.light {
+      --bg:        #f5f4ff;
+      --surface:   #ffffff;
+      --surface2:  #ede9ff;
+      --border:    #d4ccff;
+      --border2:   #b8adff;
+      --text:      #1a1730;
+      --text2:     #5f5a80;
+      --text3:     #9990c0;
+      --accent:    #6c5ce7;
+      --accent2:   #4b3fcf;
+      --green:     #00b966;
+      --red:       #e63950;
+      --amber:     #e09010;
+    }
+
+    /* Theme toggle button */
+    .theme-toggle {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 100;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      cursor: pointer;
+      font-size: 17px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      box-shadow: 0 2px 12px rgba(108,92,231,0.25);
+    }
+
+    /* Light mode colourful accents */
+    :root.light .auth-card {
+      box-shadow: 0 4px 32px rgba(108,92,231,0.10);
+    }
+    :root.light .auth-logo-icon,
+    :root.light .logo-icon,
+    :root.light .user-avatar {
+      box-shadow: 0 2px 12px rgba(108,92,231,0.25);
+    }
+    :root.light .workout-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 2px 12px rgba(108,92,231,0.08);
+    }
+    :root.light .report-card {
+      box-shadow: 0 1px 6px rgba(108,92,231,0.07);
+    }
+    :root.light .sidebar {
+      background: linear-gradient(180deg, #ffffff 0%, #f0ecff 100%);
+      box-shadow: 2px 0 16px rgba(108,92,231,0.08);
+    }
+    :root.light .stat-bar {
+      background: linear-gradient(90deg, #f0ecff, #ffffff);
+    }
+    :root.light .tabs button.active {
+      box-shadow: 0 1px 4px rgba(108,92,231,0.15);
+    }
+    :root.light .filter-btn.active {
+      background: linear-gradient(90deg, var(--accent), #a78bfa);
+    }
+    :root.light .btn-block,
+    :root.light .btn-add,
+    :root.light .btn-confirm {
+      background: linear-gradient(90deg, var(--accent), #a78bfa);
+    }
+    :root.light .btn-block:hover,
+    :root.light .btn-add:hover,
+    :root.light .btn-confirm:hover {
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
@@ -638,6 +718,8 @@
 </head>
 <body>
 
+<button class="theme-toggle" id="theme-toggle" title="Toggle light/dark mode" onclick="toggleTheme()">🌙</button>
+
 <div class="app-layout">
 
   <aside class="sidebar" id="sidebar">
@@ -828,6 +910,21 @@
 </div>
 
 <script>
+  // Theme toggle
+  (function() {
+    const saved = localStorage.getItem('ft_theme');
+    if (saved === 'light') {
+      document.documentElement.classList.add('light');
+      document.getElementById('theme-toggle').textContent = '☀️';
+    }
+  })();
+
+  function toggleTheme() {
+    const isLight = document.documentElement.classList.toggle('light');
+    document.getElementById('theme-toggle').textContent = isLight ? '☀️' : '🌙';
+    localStorage.setItem('ft_theme', isLight ? 'light' : 'dark');
+  }
+
   let users = JSON.parse(localStorage.getItem('ft_users') || 'null');
   if (!users) { users = []; localStorage.setItem('ft_users', JSON.stringify(users)); }
 

@@ -3,7 +3,7 @@ This is a web-based Fitness Workout Tracking System designed to help users manag
 
 ---
 
-Student Information:
+**Student Information**:
 - Abbie Song (BAI_A2009F-2605003)
 - Goh Tse Thing (BAI_A2009F-2605002)
 - Cheng Shu Wen (BIT_A2201F-2509001)
@@ -25,7 +25,7 @@ Student Information:
 
 ---
 
-## Team Member and Roles
+## Team Members and Roles
 | Name | Role | Responsibilities |
 |------|------|-----------------|
 | **Abbie** | Product Owner | 1. Defined project requirements and prioritized system features<br>2. Managed authentication and user system including login<br>3. Registration and user data handling |
@@ -58,9 +58,9 @@ Users need a digital fitness workout tracking system that allows them to:
 ---
 
 ## Product Vision and Scope
-Our Vision: To provide a user-friendly fitness workout tracking system that helps users plan workout schedules, monitor fitness progress and maintain a consistent and healthy lifestyle.
+**Our Vision**: To provide a user-friendly fitness workout tracking system that helps users plan workout schedules, monitor fitness progress and maintain a consistent and healthy lifestyle.
 
-Scope:
+**Scope**:
 - User registration and login
 - Workout schedule management
 - Add, edit and delete workout plans
@@ -104,15 +104,16 @@ Overall, the system aims to provide users with a structured and convenient way t
 
 ---
 ## Features Implemented
-**Iteration 1 features**<br>
-✅ User Authenticated system
+### Iteration 1 features
+
+✅ User Authentication system
 - User registration with full name, email and password
 - User Login functionality
 - User Logout functionality
 
 ✅ Input Validation
 - Required field validation
-- Minimum pasword length validation
+- Minimum password length validation
 - Duplicate email prevention
 - Invalid login credential detection
 - Error message display for failed actions
@@ -120,7 +121,7 @@ Overall, the system aims to provide users with a structured and convenient way t
 ✅ Workout Scheduling System
 - Add workout functionality
 - Workout day selection
-- Exercise selection from predefined catgories
+- Exercise selection from predefined categories
 - Workout duration input
 - Weekly workout schedule display
 
@@ -131,9 +132,69 @@ Overall, the system aims to provide users with a structured and convenient way t
 - Responsive and user-friendly layout
 
 
-**Iteration 2 Features**<br>
+### Iteration 2 Features
 
 ---
 
+## How to Run the System?
+### Prerequisites
+- Use modern web browsers like Google Chrome and Microsoft Edge
+- No additional software installation required
+- No database setup required
 
+### Steps to Run
+1. Download or clone the GitHub repository
+2. Open the project folder
+3. Navigate to the ??? folder
+4. Open the HTML file in a web browser
+5. Register a new account or log in to access the system
 
+### Testing the Features
+
+**Authentication System**
+- Register a new account
+- Attempt to register using an existing email address
+- Test login with valid and invalid credentials
+
+**Workout Scheduling**
+- Add a workout using the Add Workout button
+- Select a workout type, day and duration
+- Verify that the workout appears in the weekly schedule
+
+**Data Persistence**
+- Add workouts and refresh the browser
+- Verify that user accounts and workout data remain available through Localstorage
+
+---
+
+## Technology Stack
+| Component | Technology | Purpose |
+|------|------|------------|
+| Frontend | HTML5 | Structure and layout of the web application |
+| Styling | CSS3 | User interface design and responsive layout |
+| Logic | JavaScript (ES6) | Authentication, workout management and validation |
+| Storage | LocalStorage | Client-side data persistence |
+| Version Control | Git & GitHub | Collaboration, version control and project management |
+
+---
+
+## Scrum Process Summary
+### Methodology
+Our team used the Scrum framework to support iterative and incremental development throughout the project.
+
+### Scrum Practices
+- **Sprint Planning**: User stories were selected and assigned at the beginning of each iteration.
+- **Sprint Review**: Completed features were reviewed and demonstrated at the end of each iteration.
+- **Sprint Retrospective**: Team members discussed improvements and challenges after each iteration.
+- **Backlog Management**: User stories and tasks were managed using GitHub Issues.
+
+### Tools Used
+- GitHub Repository
+- GitHub Issues
+- GitHub Pull Requests
+- GitHub Projects Board
+- WeChat group communication
+
+---
+
+## Iteration Overview

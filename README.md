@@ -71,8 +71,6 @@ Scope:
 - Weight tracking
 - Responsive design for mobile and desktop
 
-Test Git 02
-
 ---
 ## System Overview
 The **Fitness Workout Tracking System** is a web based application developed to help users manage workout schedules and monitor fitness progress in a more organized and efficient way. The system replaces manual methods such as notebooks or memory by providing a centralized digital platform for fitness management.
@@ -105,15 +103,37 @@ Overall, the system aims to provide users with a structured and convenient way t
 | US11 | As a social user, I want to share my workout achievements online so that I can stay motivated with friends. | Won’t Have |
 
 ---
+## Features Implemented
+**Iteration 1 features**<br>
+✅ User Authenticated system
+- User registration with full name, email and password
+- User Login functionality
+- User Logout functionality
 
-## Features & Responsibilities
-| Member | Iteration 1 | Iteration 2 |
-|---|---|---|
-| Abbie | Create add workout functionality and workout list display | Add workout editing, deletion and validation |
-| Fion | Build weekly workout scheduling layout | Improve schedule management and usability |
-| Shuwen | Create workout tracking feature and completion status | Add weekly summary report and weight tracking |
-| Tse Thing | Design basic UI layout and responsive structure | Add filtering feature and improve responsive UI |
+✅ Input Validation
+- Required field validation
+- Minimum pasword length validation
+- Duplicate email prevention
+- Invalid login credential detection
+- Error message display for failed actions
+
+✅ Workout Scheduling System
+- Add workout functionality
+- Workout day selection
+- Exercise selection from predefined catgories
+- Workout duration input
+- Weekly workout schedule display
+
+✅ User Interface
+- Login and registration interface
+- Navigation between pages
+- Modal popup for adding workouts
+- Responsive and user-friendly layout
+
+
+**Iteration 2 Features**<br>
 
 ---
+
 
 

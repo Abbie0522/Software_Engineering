@@ -266,3 +266,71 @@ Our team used Git and GitHub to manage source code, track development progress a
 ---
 
 ## Individual Contributions
+### Abbie (Product Owner)
+**Responsibilities**
+- Developed the Authentication and User System.
+- Implemented user registration, login and logout functionality
+- Managed user data persistence using LocalStorage
+- Maintained and updated project documentation including README.md
+- Prioritized project requirements and managed the product backlog
+
+**Iteration Contributions**
+- Iteration 1: Developed the login and registration system
+- Iteration 2: Improved input validation and authentication reliability
+
+**GitHub Contributions**
+- Created and managed GitHub Issues
+- Submitted Pull Requests for authentication and documentation updates
+
+---
+
+### TseThing (Scrum Master)
+**Responsibilities**
+- Coordinated Scrum activities and monitored team progress
+- Designed the user interface and system layout
+- Implemented workout filtering features
+- Improved responsive design for mobile and desktop devices
+- Conducted integration testing and system verification
+
+**Iteration Contributions**
+- Iteration 1: Developed the basic user interface structure
+- Iteration 2: Improved user interface design, responsiveness and filtering functionality
+
+**GitHub Contributions**
+- Created and managed GitHub Issues
+- Submitted Pull Requests for UI enhancements and system integration
+
+---
+
+### ShuWen (Developer)
+**Responsibilities**
+- Developed the Workout Tracking and Report System
+- Implemented workout completion tracking
+- Developed workout history and weekly summary report features
+- Implemented weight tracking functionality
+
+**Iteration Contributions**
+- Iteration 1: Developed the basic workout tracking system
+- Iteration 2: Enhanced reporting features and implemented weight tracking
+
+**GitHub Contributions**
+- Created and managed GitHub Issues
+- Submitted Pull Requests for tracking and reporting features
+
+---
+
+### Fion (Developer)
+**Responsibilities**
+- Developed the Workout Scheduling System
+- Implemented add, edit and delete workout functionalities
+- Created weekly workout schedule display features
+
+**Iteration Contributions**
+- Iteration 1: Developed the basic workout scheduling system
+- Iteration 2: Enhanced scheduling functionality with edit and delete features and improved user interface design
+
+**GitHub Contributions**
+- Created and managed GitHub Issues
+- Submitted Pull Requests for workout scheduling features
+
+

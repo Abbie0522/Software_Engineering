@@ -198,3 +198,71 @@ Our team used the Scrum framework to support iterative and incremental developme
 ---
 
 ## Iteration Overview
+### Iteration 1
+**Goal**: Develop the minimum viable version of the Fitness Workout Tracking System.
+
+Completed User Stories:
+- US01
+- US02
+- US03
+
+Key Deliverables:
+- Basic user authentication and validation
+- Workout Scheduling
+- Weekly workout display
+- Basic UI
+
+**Outcomes**: Successfully delivered a functional prototype that allows users to register, log in and manage workout schedules.
+
+---
+
+### Iteration 2
+**Goal**: Enhance functionality and improve user experience.
+
+Completed User Stories:
+- US04
+- US05
+- US06
+- US07
+- US08
+
+Key Deliverables:
+- Workout tracking system
+- Workout history and reports
+- Weight tracking functionality
+- Enhanced validation
+- Improved user interface
+- Mobile and desktop responsive layout
+
+**Outcomes**: The system was extended with tracking and reporting capabilities which provide a more complete fitness management experience.
+
+---
+
+## GitHub Usage
+**Version Control Practices**<br>
+Our team used Git and GitHub to manage source code, track development progress and support collaborative development throughout the project.
+
+**Branching Strategy**
+- `main`: Integrated and stable version of the project.
+- Individual feature branches were created by team members for feature development and testing before merging changes into the main branch.
+
+**Github Issues**
+- User stories and development tasks were tracked using GitHub Issues.
+- Issues were assigned according to each member's responsibilities.
+- Progress was monitored throughout both iterations.
+
+**Pull Requests**
+- Changes were merged into the main branch through Pull Requests.
+- Team members will review and comments before merging.
+- Pull Requests provided evidence of collaboration and feature integration.
+
+**Collaboration Evidence**
+- Commit history from all team members.
+- Branch development and merge activities.
+- GitHub Issues and task tracking.
+- Pull Request reviews and discussions.
+- Iteration release tags.
+
+---
+
+## Individual Contributions

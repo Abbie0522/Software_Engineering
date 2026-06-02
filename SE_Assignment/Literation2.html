@@ -277,7 +277,7 @@
     .empty-state { text-align: center; padding: 48px 20px; color: var(--text3); font-size: 13px; border: 1px dashed var(--border); border-radius: var(--radius); }
 
     /* ===== REPORT ===== */
-    .report-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+    .report-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 20px; }
     .report-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; }
     .report-card .rc-num   { font-size: 1.8rem; font-weight: 600; letter-spacing: -0.04em; }
     .report-card .rc-label { font-size: 12px; color: var(--text2); margin-top: 3px; }
@@ -406,7 +406,7 @@
     @media (max-width: 640px) {
       :root { --sidebar-w: 200px; }
       .container { padding: 20px 16px 60px; }
-      .report-grid { grid-template-columns: 1fr; }
+      .report-grid { grid-template-columns: 1fr 1fr; }
       .workout-actions { opacity: 1; }
       .home-stats-row { grid-template-columns: 1fr 1fr; }
       .home-stats-row .home-stat-card:last-child { grid-column: span 2; }
@@ -606,6 +606,8 @@
         </div>
         <div class="weight-error" id="weight-error"></div>
         <div id="weight-log"></div>
+        <div class="section-label" style="margin-top:28px">Session History</div>
+        <div id="history-log"></div>
       </div>
 
     </div>
@@ -971,6 +973,42 @@
     localStorage.setItem('ft_workouts_' + currentUser.email, JSON.stringify(workouts));
   }
 
+  // ===== STREAK & HISTORY (from Iteration2) =====
+  function calcStreak() {
+    const h = JSON.parse(localStorage.getItem('ft_history_' + currentUser.email) || '[]');
+    if (h.length === 0) return 0;
+    const dates = h.map(x => new Date(x.date)).sort((a, b) => b - a);
+    let streak = 1;
+    for (let i = 0; i < dates.length - 1; i++) {
+      const diff = (dates[i] - dates[i + 1]) / (1000 * 60 * 60 * 24);
+      if (Math.round(diff) === 1) { streak++; } else { break; }
+    }
+    return streak;
+  }
+
+  function saveHistory() {
+    const today = getTodayDateStr();
+    const h = JSON.parse(localStorage.getItem('ft_history_' + currentUser.email) || '[]');
+    if (!h.find(x => x.date === today)) {
+      h.unshift({ date: today, count: workouts.filter(w => w.done).length });
+      localStorage.setItem('ft_history_' + currentUser.email, JSON.stringify(h));
+    }
+  }
+
+  function renderHistory() {
+    if (!currentUser) return;
+    const h = JSON.parse(localStorage.getItem('ft_history_' + currentUser.email) || '[]');
+    const el = document.getElementById('history-log');
+    if (!el) return;
+    if (h.length === 0) {
+      el.innerHTML = '<div class="empty-state">No history yet. Complete all workouts in a day to record a session!</div>';
+    } else {
+      el.innerHTML = h.map(x =>
+        `<div class="weight-item"><span class="wi-date">${x.date}</span><span class="wi-val">${x.count} workout${x.count !== 1 ? 's' : ''} completed</span></div>`
+      ).join('');
+    }
+  }
+
   // ===== HOME =====
   function renderHome() {
     const hour = new Date().getHours();
@@ -990,11 +1028,13 @@
     document.getElementById('home-pb').style.width  = pct + '%';
     document.getElementById('greeting-sub').textContent = `${done.length} of ${total} workout${total !== 1 ? 's' : ''} completed this period.`;
 
-    // Streak
+    // Streak (real day-streak from history)
     const streakEl = document.getElementById('home-streak-area');
-    const todayDone = workouts.filter(w => w.done && w.addedDate === getTodayDateStr()).length;
-    if (done.length > 0) {
-      streakEl.innerHTML = `<div class="streak-banner"><div class="sb-icon">🔥</div><div class="sb-text"><div class="sb-title">${done.length} workout${done.length !== 1 ? 's' : ''} completed!</div><div class="sb-sub">Keep up the great work.</div></div></div>`;
+    const streak = calcStreak();
+    if (streak > 0) {
+      streakEl.innerHTML = `<div class="streak-banner"><div class="sb-icon">🔥</div><div class="sb-text"><div class="sb-title">${streak}-day streak! Keep it up!</div><div class="sb-sub">${done.length} workout${done.length !== 1 ? 's' : ''} completed this period.</div></div></div>`;
+    } else if (done.length > 0) {
+      streakEl.innerHTML = `<div class="streak-banner"><div class="sb-icon">💪</div><div class="sb-text"><div class="sb-title">${done.length} workout${done.length !== 1 ? 's' : ''} completed!</div><div class="sb-sub">Keep up the great work.</div></div></div>`;
     } else {
       streakEl.innerHTML = '';
     }
@@ -1089,7 +1129,17 @@
 
   function toggleDone(id) {
     const w = workouts.find(x => x.id === id);
-    if (w) { w.done = !w.done; saveWorkouts(); renderSchedule(); renderHome(); }
+    if (w) {
+      w.done = !w.done;
+      saveWorkouts();
+      // If all workouts for today are done, save to history
+      const todayIdx = getTodayDayIndex();
+      const todayWorkouts = workouts.filter(x => x.dayIndex === todayIdx);
+      if (todayWorkouts.length > 0 && todayWorkouts.every(x => x.done)) {
+        saveHistory();
+      }
+      renderSchedule(); renderHome();
+    }
   }
 
   function deleteWorkout(id) {
@@ -1242,11 +1292,15 @@
     const done      = workouts.filter(w => w.done);
     const total     = workouts.length;
     const totalMins = done.reduce((s, w) => s + w.duration, 0);
+    const streak    = calcStreak();
+    const h         = JSON.parse(localStorage.getItem('ft_history_' + currentUser.email) || '[]');
     document.getElementById('report-grid').innerHTML = `
       <div class="report-card"><div class="rc-num" style="color:var(--green)">${done.length}</div><div class="rc-label">Workouts Completed</div></div>
       <div class="report-card"><div class="rc-num" style="color:var(--accent)">${totalMins}</div><div class="rc-label">Total Minutes</div></div>
       <div class="report-card"><div class="rc-num">${total}</div><div class="rc-label">Total Scheduled</div></div>
       <div class="report-card"><div class="rc-num" style="color:var(--amber)">${total > 0 ? Math.round(done.length/total*100) : 0}%</div><div class="rc-label">Completion Rate</div></div>
+      <div class="report-card"><div class="rc-num" style="color:var(--text)">${h.length}</div><div class="rc-label">Sessions Logged</div></div>
+      <div class="report-card"><div class="rc-num" style="color:var(--amber)">${streak}🔥</div><div class="rc-label">Day Streak</div></div>
     `;
     const listEl = document.getElementById('report-list');
     if (done.length === 0) {
@@ -1266,6 +1320,7 @@
       });
     }
     renderWeightLog();
+    renderHistory();
   }
 
   function logWeight() {

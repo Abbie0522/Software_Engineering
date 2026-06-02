@@ -125,6 +125,13 @@ Overall, the system aims to provide users with a structured and convenient way t
 - Workout duration input
 - Weekly workout schedule display
 
+✅ Workout Tracking System
+- Mark workouts as completed
+- Daily workout progress tracking
+- Workout completion status display
+- Workout history recording
+- Local storage data persistence
+
 ✅ User Interface
 - Login and registration interface
 - Navigation between pages
@@ -133,6 +140,35 @@ Overall, the system aims to provide users with a structured and convenient way t
 
 
 ### Iteration 2 Features
+✅ Enhanced Authentication & Security
+- Show/Hide password functionality
+- Forgot password and password reset feature
+- Strong password validation
+- Duplicate email detection
+- Improved form validation and error handling
+
+✅ Enhanced Workout Scheduling System
+- Edit existing workouts
+- Delete workouts from schedule
+- Workout categorization system
+- Predefined exercise templates
+- Workout duration validation
+- Improved scheduling interface
+
+✅ Workout Tracking & Reporting Improvements
+- Workout completion tracking
+- Daily progress tracking
+- Weekly workout summary
+- Workout history records
+- Workout streak tracking
+- Weight logging feature
+- Workout statistics dashboard
+
+✅ User Experience Improvements
+- Enhanced user interface design
+- Improved modal interactions
+- Better visual feedback for completed workouts
+- Responsive layout improvements
 
 ---
 

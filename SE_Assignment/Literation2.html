@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FitTrack</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg:        #0b0b0e;
@@ -158,7 +158,6 @@
     .error-msg { color: var(--red); font-size: 12px; margin-top: 8px; display: none; }
     .error-msg.show { display: block; }
 
-    /* Show/hide password */
     .pw-wrapper { position: relative; }
     .pw-wrapper input { padding-right: 38px !important; }
     .pw-eye {
@@ -168,12 +167,10 @@
     }
     .pw-eye:hover { color: var(--text2); }
 
-    /* Forgot password link */
     .forgot-link { text-align: right; margin-top: -6px; margin-bottom: 12px; font-size: 12px; }
     .forgot-link span { color: var(--text2); cursor: pointer; text-decoration: underline; transition: color 0.15s; }
     .forgot-link span:hover { color: var(--accent); }
 
-    /* Forgot password modal */
     .fp-overlay {
       display: none; position: fixed; inset: 0;
       background: rgba(0,0,0,0.7); z-index: 200;
@@ -192,111 +189,47 @@
     .fp-close:hover { color: var(--text); }
 
     /* ===== HOME PAGE ===== */
-    .home-greeting {
-      margin-bottom: 28px;
-    }
-    .home-greeting .greeting-time {
-      font-size: 11px; font-weight: 600; color: var(--text3);
-      text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px;
-    }
-    .home-greeting h2 {
-      font-size: 1.6rem; font-weight: 600; letter-spacing: -0.03em;
-      line-height: 1.2;
-    }
-    .home-greeting .greeting-sub {
-      font-size: 13px; color: var(--text2); margin-top: 5px;
-    }
+    .home-greeting { margin-bottom: 28px; }
+    .home-greeting .greeting-time { font-size: 11px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+    .home-greeting h2 { font-size: 1.6rem; font-weight: 600; letter-spacing: -0.03em; line-height: 1.2; }
+    .home-greeting .greeting-sub { font-size: 13px; color: var(--text2); margin-top: 5px; }
 
-    .home-stats-row {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
-      margin-bottom: 24px;
-    }
-    .home-stat-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 16px 18px;
-      transition: border-color 0.15s;
-    }
+    .home-stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 24px; }
+    .home-stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; transition: border-color 0.15s; }
     .home-stat-card:hover { border-color: var(--border2); }
     .home-stat-card .hsc-icon { font-size: 20px; margin-bottom: 8px; }
     .home-stat-card .hsc-num { font-size: 1.6rem; font-weight: 600; letter-spacing: -0.04em; }
     .home-stat-card .hsc-label { font-size: 11px; color: var(--text2); margin-top: 3px; }
 
-    .home-section-title {
-      font-size: 10px; font-weight: 600; color: var(--text3);
-      text-transform: uppercase; letter-spacing: 0.09em;
-      margin-bottom: 10px; margin-top: 24px;
-    }
+    .home-section-title { font-size: 10px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 10px; margin-top: 24px; }
 
-    .today-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); overflow: hidden; margin-bottom: 6px;
-    }
-    .today-card-header {
-      padding: 12px 16px; background: var(--surface2);
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .today-card-header .tch-day {
-      font-size: 11px; font-weight: 600; color: var(--accent);
-      text-transform: uppercase; letter-spacing: 0.08em;
-    }
-    .today-card-header .tch-count {
-      font-size: 11px; color: var(--text3); font-family: 'DM Mono', monospace;
-    }
-    .today-workout-item {
-      padding: 11px 16px; display: flex; align-items: center; gap: 12px;
-      border-bottom: 1px solid var(--border);
-    }
+    .today-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 6px; }
+    .today-card-header { padding: 12px 16px; background: var(--surface2); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .today-card-header .tch-day { font-size: 11px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; }
+    .today-card-header .tch-count { font-size: 11px; color: var(--text3); font-family: 'DM Sans', sans-serif; }
+    .today-workout-item { padding: 11px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border); }
     .today-workout-item:last-child { border-bottom: none; }
-    .twi-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--border2); flex-shrink: 0;
-      transition: background 0.15s;
-    }
+    .twi-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border2); flex-shrink: 0; transition: background 0.15s; }
     .today-workout-item.done .twi-dot { background: var(--green); }
     .twi-name { flex: 1; font-size: 13px; font-weight: 500; }
     .today-workout-item.done .twi-name { text-decoration: line-through; color: var(--text2); }
-    .twi-dur { font-size: 12px; color: var(--text2); font-family: 'DM Mono', monospace; }
+    .twi-dur { font-size: 12px; color: var(--text2); font-family: 'DM Sans', sans-serif; }
 
-    .progress-bar-wrap {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 16px 18px; margin-bottom: 10px;
-    }
-    .progress-bar-wrap .pb-header {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 10px;
-    }
+    .progress-bar-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; margin-bottom: 10px; }
+    .progress-bar-wrap .pb-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
     .progress-bar-wrap .pb-label { font-size: 13px; font-weight: 500; }
-    .progress-bar-wrap .pb-pct { font-size: 13px; font-weight: 600; color: var(--accent); font-family: 'DM Mono', monospace; }
-    .pb-track {
-      height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden;
-    }
-    .pb-fill {
-      height: 100%; background: linear-gradient(90deg, var(--accent), var(--green));
-      border-radius: 3px; transition: width 0.6s ease;
-    }
+    .progress-bar-wrap .pb-pct { font-size: 13px; font-weight: 600; color: var(--accent); font-family: 'DM Sans', sans-serif; }
+    .pb-track { height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+    .pb-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--green)); border-radius: 3px; transition: width 0.6s ease; }
 
-    .quick-actions {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-      margin-bottom: 10px;
-    }
-    .qa-btn {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 14px 16px;
-      cursor: pointer; text-align: left; transition: all 0.15s;
-      display: flex; align-items: center; gap: 12px;
-    }
+    .quick-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+    .qa-btn { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; cursor: pointer; text-align: left; transition: all 0.15s; display: flex; align-items: center; gap: 12px; }
     .qa-btn:hover { border-color: var(--accent); background: var(--surface2); }
     .qa-btn .qa-icon { font-size: 20px; flex-shrink: 0; }
     .qa-btn .qa-text .qa-title { font-size: 13px; font-weight: 600; color: var(--text); }
     .qa-btn .qa-text .qa-sub { font-size: 11px; color: var(--text2); margin-top: 2px; }
 
-    .streak-banner {
-      background: linear-gradient(135deg, rgba(124,106,247,0.15), rgba(52,201,122,0.10));
-      border: 1px solid rgba(124,106,247,0.25);
-      border-radius: var(--radius); padding: 14px 18px;
-      display: flex; align-items: center; gap: 14px; margin-bottom: 10px;
-    }
+    .streak-banner { background: linear-gradient(135deg, rgba(124,106,247,0.15), rgba(52,201,122,0.10)); border: 1px solid rgba(124,106,247,0.25); border-radius: var(--radius); padding: 14px 18px; display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
     .streak-banner .sb-icon { font-size: 28px; }
     .streak-banner .sb-text .sb-title { font-size: 14px; font-weight: 600; }
     .streak-banner .sb-text .sb-sub { font-size: 12px; color: var(--text2); margin-top: 2px; }
@@ -333,7 +266,8 @@
     .workout-info { flex: 1; min-width: 0; }
     .workout-name { font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .workout-card.done .workout-name { text-decoration: line-through; color: var(--text2); }
-    .workout-meta { font-size: 12px; color: var(--text2); margin-top: 2px; font-family: 'DM Mono', monospace; }
+    .workout-meta { font-size: 12px; color: var(--text2); margin-top: 2px; font-family: 'DM Sans', sans-serif; }
+    .workout-cat-badge { font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--surface2); border: 1px solid var(--border2); color: var(--text3); white-space: nowrap; flex-shrink: 0; }
     .workout-actions { display: flex; gap: 6px; opacity: 0; transition: opacity 0.15s; }
     .workout-card:hover .workout-actions { opacity: 1; }
     .action-btn { background: var(--surface2); border: 1px solid var(--border); color: var(--text2); width: 28px; height: 28px; border-radius: var(--radius-sm); cursor: pointer; font-size: 13px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
@@ -348,9 +282,9 @@
     .report-card .rc-num   { font-size: 1.8rem; font-weight: 600; letter-spacing: -0.04em; }
     .report-card .rc-label { font-size: 12px; color: var(--text2); margin-top: 3px; }
     .report-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 11px 16px; margin-bottom: 6px; display: flex; align-items: center; gap: 12px; }
-    .report-day  { font-size: 11px; font-family: 'DM Mono', monospace; color: var(--text3); min-width: 36px; }
+    .report-day  { font-size: 11px; font-family: 'DM Sans', sans-serif; color: var(--text3); min-width: 36px; }
     .report-name { flex: 1; font-size: 13px; font-weight: 500; }
-    .report-mins { font-size: 12px; color: var(--text2); font-family: 'DM Mono', monospace; }
+    .report-mins { font-size: 12px; color: var(--text2); font-family: 'DM Sans', sans-serif; }
     .done-badge { background: rgba(52,201,122,0.15); color: var(--green); font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 20px; }
 
     .weight-input-row { display: flex; gap: 8px; margin-bottom: 14px; }
@@ -362,25 +296,112 @@
     .weight-error { color: var(--red); font-size: 12px; margin-bottom: 10px; display: none; }
     .weight-error.show { display: block; }
     .weight-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 16px; margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between; font-size: 13px; }
-    .weight-item .wi-date { color: var(--text2); font-size: 12px; font-family: 'DM Mono', monospace; }
-    .weight-item .wi-val  { font-weight: 600; font-family: 'DM Mono', monospace; }
+    .weight-item .wi-date { color: var(--text2); font-size: 12px; font-family: 'DM Sans', sans-serif; }
+    .weight-item .wi-val  { font-weight: 600; font-family: 'DM Sans', sans-serif; }
 
-    /* ===== MODAL ===== */
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 50; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(4px); }
-    .modal-overlay.open { display: flex; }
-    .modal { background: var(--surface); border: 1px solid var(--border2); border-radius: 14px; width: 100%; max-width: 360px; padding: 24px; }
-    .modal h3 { font-size: 1rem; font-weight: 600; margin-bottom: 18px; letter-spacing: -0.02em; }
-    .modal .form-group select, .modal .form-group input { width: 100%; padding: 9px 12px; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13px; font-family: 'DM Sans', sans-serif; color: var(--text); }
-    .modal .form-group select option { background: var(--surface2); }
-    .modal .form-group select:focus, .modal .form-group input:focus { outline: none; border-color: var(--accent); }
-    .modal-buttons { display: flex; gap: 8px; margin-top: 18px; }
-    .modal-buttons button { flex: 1; padding: 9px; border-radius: var(--radius-sm); font-size: 13px; font-family: 'DM Sans', sans-serif; font-weight: 500; cursor: pointer; transition: all 0.15s; }
-    .btn-confirm { background: var(--accent); color: white; border: none; }
-    .btn-confirm:hover { background: var(--accent2); }
-    .btn-cancel { background: transparent; border: 1px solid var(--border2); color: var(--text2); }
-    .btn-cancel:hover { background: var(--surface2); color: var(--text); }
-    .modal-error { color: var(--red); font-size: 12px; margin-top: 6px; display: none; }
-    .modal-error.show { display: block; }
+    /* ===== MODAL (Iteration2 rich style) ===== */
+    .modal-backdrop {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.7); z-index: 50;
+      align-items: center; justify-content: center;
+      padding: 20px; backdrop-filter: blur(4px);
+    }
+    .modal-backdrop.open { display: flex; }
+
+    .modal {
+      background: var(--surface); border: 1px solid var(--border2);
+      border-radius: 14px; width: 100%; max-width: 420px;
+      overflow: hidden;
+      animation: modalIn 0.18s ease;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.96) translateY(8px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .modal-header {
+      padding: 18px 20px 14px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: flex-start; justify-content: space-between;
+    }
+    .modal-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.2rem; font-weight: 400; color: var(--text); line-height: 1.2;
+    }
+    .modal-subtitle { font-size: 12px; color: var(--text3); margin-top: 3px; }
+    .modal-close-x {
+      background: none; border: 1px solid var(--border2); border-radius: var(--radius-sm);
+      cursor: pointer; color: var(--text3); font-size: 14px;
+      width: 27px; height: 27px; display: flex; align-items: center; justify-content: center;
+      margin-left: 12px; flex-shrink: 0; transition: all 0.15s;
+    }
+    .modal-close-x:hover { background: var(--surface2); color: var(--text); }
+
+    .modal-body { padding: 16px 20px 18px; display: flex; flex-direction: column; gap: 14px; }
+
+    .modal-field label {
+      display: block; font-size: 11px; font-weight: 600; color: var(--text3);
+      text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 7px;
+    }
+
+    /* Category tabs */
+    .category-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+    .cat-tab {
+      padding: 4px 12px; border-radius: 999px;
+      border: 1px solid var(--border2); background: transparent;
+      font-family: 'DM Sans', sans-serif; font-size: 12px; cursor: pointer;
+      color: var(--text2); transition: all 0.12s;
+    }
+    .cat-tab:hover { border-color: var(--accent); color: var(--text); }
+    .cat-tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+    /* Exercise grid */
+    .exercise-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5px;
+      max-height: 180px; overflow-y: auto; scrollbar-width: thin;
+    }
+    .exercise-option {
+      padding: 8px 10px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); background: var(--surface2);
+      cursor: pointer; font-size: 12px; font-weight: 500; color: var(--text2);
+      transition: all 0.12s; display: flex; align-items: center;
+    }
+    .exercise-option:hover { border-color: var(--accent); color: var(--text); }
+    .exercise-option.selected { border-color: var(--accent); background: rgba(124,106,247,0.15); color: var(--text); }
+
+    /* Custom input */
+    .modal-custom-input {
+      width: 100%; padding: 9px 12px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); background: var(--surface2);
+      font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--text);
+      outline: none; transition: border-color 0.15s;
+    }
+    .modal-custom-input:focus { border-color: var(--accent); }
+    .modal-custom-input::placeholder { color: var(--text3); }
+
+    /* Duration */
+    .duration-row { display: flex; align-items: center; gap: 10px; }
+    .duration-input {
+      width: 80px; padding: 9px 10px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); background: var(--surface2);
+      font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text);
+      outline: none; transition: border-color 0.15s;
+    }
+    .duration-input:focus { border-color: var(--accent); }
+    .duration-input.error { border-color: var(--red); }
+    .duration-unit { font-size: 13px; color: var(--text3); }
+    .duration-hint { font-size: 11px; color: var(--red); margin-top: 4px; min-height: 14px; }
+
+    .modal-footer { padding: 0 20px 18px; display: flex; gap: 8px; }
+    .btn-modal {
+      flex: 1; padding: 10px 16px; border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+      cursor: pointer; border: 1px solid var(--border2); transition: all 0.15s;
+    }
+    .btn-modal-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .btn-modal-primary:hover { background: var(--accent2); }
+    .btn-modal-primary:disabled { opacity: 0.35; cursor: default; }
+    .btn-modal-secondary { background: transparent; color: var(--text2); }
+    .btn-modal-secondary:hover { background: var(--surface2); color: var(--text); }
 
     @media (max-width: 640px) {
       :root { --sidebar-w: 200px; }
@@ -591,7 +612,7 @@
   </div>
 </div>
 
-<!-- Forgot Password Modal (teammate's logic) -->
+<!-- Forgot Password Modal -->
 <div class="fp-overlay" id="forgotModal">
   <div class="fp-modal">
     <span class="fp-close" onclick="closeForgotPassword()">&#x2715;</span>
@@ -625,50 +646,47 @@
   </div>
 </div>
 
-<div class="modal-overlay" id="modal-overlay">
-  <div class="modal">
-    <h3 id="modal-title">Add Workout</h3>
-    <div class="form-group">
-      <label>Day</label>
-      <select id="modal-day">
-        <option value="0">Monday</option><option value="1">Tuesday</option>
-        <option value="2">Wednesday</option><option value="3">Thursday</option>
-        <option value="4">Friday</option><option value="5">Saturday</option>
-        <option value="6">Sunday</option>
-      </select>
+<!-- Add/Edit Workout Modal (Iteration2 rich UI) -->
+<div class="modal-backdrop" id="modal-backdrop">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="modal-title">Add Workout</div>
+        <div class="modal-subtitle" id="modal-subtitle"></div>
+      </div>
+      <button class="modal-close-x" id="modal-close" aria-label="Close">✕</button>
     </div>
-    <div class="form-group">
-      <label>Exercise</label>
-      <select id="modal-exercise">
-        <optgroup label="Strength">
-          <option>Bench Press</option><option>Deadlift</option><option>Squats</option>
-          <option>Pull-ups</option><option>Shoulder Press</option>
-        </optgroup>
-        <optgroup label="Cardio">
-          <option>Running</option><option>Cycling</option><option>Swimming</option><option>Jump Rope</option>
-        </optgroup>
-        <optgroup label="HIIT">
-          <option>Burpees</option><option>Kettlebell</option><option>Sprint Intervals</option>
-        </optgroup>
-        <optgroup label="Yoga & Stretch">
-          <option>Vinyasa Flow</option><option>Stretching</option><option>Pilates</option>
-        </optgroup>
-      </select>
+    <div class="modal-body">
+      <div class="modal-field">
+        <label>Category</label>
+        <div class="category-tabs" id="cat-tabs"></div>
+      </div>
+      <div class="modal-field">
+        <label>Exercise</label>
+        <div class="exercise-grid" id="exercise-grid"></div>
+      </div>
+      <div class="modal-field">
+        <label>Custom name (optional)</label>
+        <input type="text" class="modal-custom-input" id="custom-name" placeholder="e.g. Jump rope, Cycling…">
+      </div>
+      <div class="modal-field">
+        <label>Duration</label>
+        <div class="duration-row">
+          <input type="number" class="duration-input" id="duration-input" min="1" max="300" value="30">
+          <span class="duration-unit">minutes (1–300)</span>
+        </div>
+        <div class="duration-hint" id="duration-hint"></div>
+      </div>
     </div>
-    <div class="form-group">
-      <label>Duration (minutes)</label>
-      <input type="number" id="modal-duration" value="30" min="1" max="300">
-      <div class="modal-error" id="modal-duration-error"></div>
-    </div>
-    <div class="modal-buttons">
-      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
-      <button class="btn-confirm" id="modal-confirm-btn" onclick="confirmModal()">Add Workout</button>
+    <div class="modal-footer">
+      <button class="btn-modal btn-modal-secondary" id="modal-cancel">Cancel</button>
+      <button class="btn-modal btn-modal-primary" id="modal-add" disabled>Add Workout</button>
     </div>
   </div>
 </div>
 
 <script>
-  // Theme
+  // ===== THEME =====
   (function() {
     const saved = localStorage.getItem('ft_theme');
     if (saved === 'light') {
@@ -682,7 +700,8 @@
     localStorage.setItem('ft_theme', isLight ? 'light' : 'dark');
   }
 
-  let users = JSON.parse(localStorage.getItem('ft_users') || '[]');
+  // ===== STATE =====
+  let users       = JSON.parse(localStorage.getItem('ft_users') || '[]');
   let currentUser = null;
   let workouts    = [];
   let editingId   = null;
@@ -690,6 +709,103 @@
 
   const DAYS = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
 
+  // ===== EXERCISE DATA (from Iteration2) =====
+  const CAT_LABELS = {
+    strength: 'Strength',
+    cardio:   'Cardio',
+    hiit:     'HIIT',
+    yoga:     'Yoga & Stretch',
+    other:    'Sports & Other'
+  };
+
+  const EXERCISES = {
+    strength: [
+      { name: 'Bench Press',    icon: '🏋️' },
+      { name: 'Deadlift',       icon: '💪' },
+      { name: 'Squats',         icon: '🦵' },
+      { name: 'Pull-ups',       icon: '🙌' },
+      { name: 'Shoulder Press', icon: '🔝' },
+      { name: 'Dumbbell Row',   icon: '🧎' },
+    ],
+    cardio: [
+      { name: 'Running',    icon: '🏃' },
+      { name: 'Cycling',    icon: '🚴' },
+      { name: 'Swimming',   icon: '🏊' },
+      { name: 'Jump Rope',  icon: '🏅' },
+      { name: 'Elliptical', icon: '🔄' },
+      { name: 'Rowing',     icon: '🚣' },
+    ],
+    hiit: [
+      { name: 'Burpees',           icon: '🔥' },
+      { name: 'Box Jumps',         icon: '📦' },
+      { name: 'Kettlebell',        icon: '🔔' },
+      { name: 'Battle Ropes',      icon: '🪢' },
+      { name: 'Mountain Climbers', icon: '⛰️' },
+      { name: 'Sprint Intervals',  icon: '⚡' },
+    ],
+    yoga: [
+      { name: 'Vinyasa Flow', icon: '🧘' },
+      { name: 'Yin Yoga',     icon: '☯️' },
+      { name: 'Power Yoga',   icon: '✨' },
+      { name: 'Stretching',   icon: '🤸' },
+      { name: 'Meditation',   icon: '🌿' },
+      { name: 'Pilates',      icon: '🩰' },
+    ],
+    other: [
+      { name: 'Basketball', icon: '🏀' },
+      { name: 'Football',   icon: '⚽' },
+      { name: 'Tennis',     icon: '🎾' },
+      { name: 'Hiking',     icon: '🥾' },
+      { name: 'Dance',      icon: '💃' },
+      { name: 'Boxing',     icon: '🥊' },
+    ],
+  };
+
+  // Modal state (Iteration2)
+  let modalDayIndex   = 0;
+  let selectedExercise = null;
+  let selectedCat     = 'strength';
+
+  // ===== DATE HELPERS =====
+  function getWeekDates(offset) {
+    const today = new Date();
+    const monday = new Date(today);
+    monday.setDate(today.getDate() - ((today.getDay() + 6) % 7) + (offset || 0) * 7);
+    return Array.from({ length: 7 }, (_, i) => {
+      const d = new Date(monday);
+      d.setDate(monday.getDate() + i);
+      return d;
+    });
+  }
+
+  function getWeekOffset() {
+    if (weekFilter === 'last') return -1;
+    return 0;
+  }
+
+  function isThisWeek(isoDate) {
+    const dates = getWeekDates(0);
+    const d = new Date(isoDate);
+    return d >= dates[0] && d <= dates[6];
+  }
+
+  function isLastWeek(isoDate) {
+    const dates = getWeekDates(-1);
+    const d = new Date(isoDate);
+    return d >= dates[0] && d <= dates[6];
+  }
+
+  function getTodayDayIndex() {
+    const d = new Date().getDay();
+    return d === 0 ? 6 : d - 1;
+  }
+
+  function getTodayDateStr() {
+    const d = new Date();
+    return d.toISOString().split('T')[0];
+  }
+
+  // ===== INIT =====
   window.onload = function () {
     const savedEmail = localStorage.getItem('ft_session');
     if (savedEmail) {
@@ -699,374 +815,245 @@
     showPage('auth');
   };
 
+  // ===== AUTH =====
   function switchTab(tab) {
-    document.querySelectorAll('.tabs button').forEach((b, i) =>
-      b.classList.toggle('active', (i === 0) === (tab === 'login'))
-    );
-    document.getElementById('login-form').style.display    = tab === 'login'    ? 'block' : 'none';
-    document.getElementById('register-form').style.display = tab === 'register' ? 'block' : 'none';
+    const loginForm    = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    const btns         = document.querySelectorAll('.tabs button');
+    if (tab === 'login') {
+      loginForm.style.display = 'block';
+      registerForm.style.display = 'none';
+      btns[0].classList.add('active'); btns[1].classList.remove('active');
+    } else {
+      loginForm.style.display = 'none';
+      registerForm.style.display = 'block';
+      btns[0].classList.remove('active'); btns[1].classList.add('active');
+    }
   }
 
-  // ===== TEAMMATE'S AUTH FUNCTIONS =====
-
-  // Get all registered users from localStorage
-  function getUsers() {
-    return JSON.parse(localStorage.getItem('ft_users') || '[]');
-  }
-
-  // Save all registered users to localStorage
-  function saveUsers(u) {
-    users = u;
-    localStorage.setItem('ft_users', JSON.stringify(u));
-  }
-
-  // Login
   function login() {
-    const email  = document.getElementById('loginEmail').value.trim();
-    const pw     = document.getElementById('loginPassword').value;
-    const errEl  = document.getElementById('login-error');
-    errEl.style.color = '';
-
-    if (!email) { errEl.textContent = 'Email cannot be empty.'; errEl.classList.add('show'); return; }
-    if (!pw)    { errEl.textContent = 'Password cannot be empty.'; errEl.classList.add('show'); return; }
-
-    // Check admin credentials
-    const isAdmin = (email === 'admin@gmail.com' && pw === 'admin123');
-
-    // Check registered users
-    const allUsers = getUsers();
-    const matched  = allUsers.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === pw);
-
-    if (!isAdmin && !matched) {
-      errEl.textContent = 'Incorrect email or password.'; errEl.classList.add('show'); return;
-    }
-
+    const email    = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value;
+    const errEl    = document.getElementById('login-error');
     errEl.classList.remove('show');
-
-    if (isAdmin) {
-      loginUser({ name: 'Admin', email: 'admin@gmail.com', password: 'admin123' });
-    } else {
-      loginUser(matched);
-    }
+    if (!email || !password) { errEl.textContent = 'Please enter email and password.'; errEl.classList.add('show'); return; }
+    const user = users.find(u => u.email === email);
+    if (!user)                { errEl.textContent = 'No account found with this email.'; errEl.classList.add('show'); return; }
+    if (user.password !== password) { errEl.textContent = 'Incorrect password.'; errEl.classList.add('show'); return; }
+    localStorage.setItem('ft_session', email);
+    loginUser(user);
   }
 
-  // Register
   function register() {
-    const name    = document.getElementById('registerUsername').value.trim();
-    const email   = document.getElementById('registerEmail').value.trim();
-    const pw      = document.getElementById('registerPassword').value;
-    const confirm = document.getElementById('confirmPassword').value;
-    const errEl   = document.getElementById('reg-error');
-
-    if (!name)  { errEl.textContent = 'Username cannot be empty.'; errEl.classList.add('show'); return; }
-    if (!email) { errEl.textContent = 'Email cannot be empty.'; errEl.classList.add('show'); return; }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) { errEl.textContent = 'Please enter a valid email address.'; errEl.classList.add('show'); return; }
-    if (!pw) { errEl.textContent = 'Password cannot be empty.'; errEl.classList.add('show'); return; }
-    if (pw !== confirm) { errEl.textContent = 'Passwords do not match.'; errEl.classList.add('show'); return; }
-
-    const allUsers = getUsers();
-    const emailExists = allUsers.some(u => u.email.toLowerCase() === email.toLowerCase());
-    if (emailExists) { errEl.textContent = 'This email is already registered. Please use a different email.'; errEl.classList.add('show'); return; }
-
-    const strongPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/;
-    if (!strongPassword.test(pw)) {
-      errEl.textContent = 'Password must be at least 6 characters and include uppercase, lowercase, number and special character.';
-      errEl.classList.add('show'); return;
-    }
-
-    allUsers.push({ name, email, password: pw });
-    saveUsers(allUsers);
+    const name     = document.getElementById('registerUsername').value.trim();
+    const email    = document.getElementById('registerEmail').value.trim();
+    const password = document.getElementById('registerPassword').value;
+    const confirm  = document.getElementById('confirmPassword').value;
+    const errEl    = document.getElementById('reg-error');
     errEl.classList.remove('show');
-    alert('Registration Successful!');
-    showLogin();
+    if (!name || !email || !password || !confirm) { errEl.textContent = 'Please fill in all fields.'; errEl.classList.add('show'); return; }
+    if (password !== confirm)  { errEl.textContent = 'Passwords do not match.'; errEl.classList.add('show'); return; }
+    if (password.length < 6)   { errEl.textContent = 'Password must be at least 6 characters.'; errEl.classList.add('show'); return; }
+    if (users.find(u => u.email === email)) { errEl.textContent = 'An account with this email already exists.'; errEl.classList.add('show'); return; }
+    const user = { name, email, password };
+    users.push(user);
+    localStorage.setItem('ft_users', JSON.stringify(users));
+    localStorage.setItem('ft_session', email);
+    loginUser(user);
   }
-
-  // Show/hide password
-  function togglePassword(inputId, icon) {
-    const input = document.getElementById(inputId);
-    if (input.type === 'password') {
-      input.type = 'text';
-      icon.textContent = '🙈';
-    } else {
-      input.type = 'password';
-      icon.textContent = '👁️';
-    }
-  }
-
-  // Open forgot password modal
-  function openForgotPassword() {
-    document.getElementById('forgotEmail').value = '';
-    document.getElementById('newPassword').value = '';
-    document.getElementById('confirmNewPassword').value = '';
-    document.getElementById('forgot-email-error').classList.remove('show');
-    document.getElementById('forgot-reset-error').classList.remove('show');
-    document.getElementById('emailStep').style.display = 'block';
-    document.getElementById('resetStep').style.display = 'none';
-    document.getElementById('forgotModal').classList.add('open');
-  }
-
-  function closeForgotPassword() {
-    document.getElementById('forgotModal').classList.remove('open');
-  }
-
-  // Verify if email is registered
-  function verifyForgotEmail() {
-    const email = document.getElementById('forgotEmail').value.trim();
-    const errEl = document.getElementById('forgot-email-error');
-
-    if (!email) { errEl.textContent = 'Please enter your email.'; errEl.classList.add('show'); return; }
-    if (email.toLowerCase() === 'admin@gmail.com') { errEl.textContent = 'Admin password cannot be reset.'; errEl.classList.add('show'); return; }
-
-    const allUsers = getUsers();
-    const exists = allUsers.some(u => u.email.toLowerCase() === email.toLowerCase());
-    if (!exists) { errEl.textContent = 'No account found with this email.'; errEl.classList.add('show'); return; }
-
-    errEl.classList.remove('show');
-    document.getElementById('emailStep').style.display = 'none';
-    document.getElementById('resetStep').style.display = 'block';
-  }
-
-  // Reset the password
-  function resetPassword() {
-    const email      = document.getElementById('forgotEmail').value.trim();
-    const newPass    = document.getElementById('newPassword').value;
-    const confirmPass = document.getElementById('confirmNewPassword').value;
-    const errEl      = document.getElementById('forgot-reset-error');
-
-    if (!newPass) { errEl.textContent = 'New password cannot be empty.'; errEl.classList.add('show'); return; }
-
-    const strongPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/;
-    if (!strongPassword.test(newPass)) {
-      errEl.textContent = 'Password must be at least 6 characters and include uppercase, lowercase, number and special character.';
-      errEl.classList.add('show'); return;
-    }
-    if (newPass !== confirmPass) { errEl.textContent = 'Passwords do not match.'; errEl.classList.add('show'); return; }
-
-    const allUsers = getUsers();
-    const userIndex = allUsers.findIndex(u => u.email.toLowerCase() === email.toLowerCase());
-    if (userIndex !== -1 && allUsers[userIndex].password === newPass) {
-      errEl.textContent = 'New password cannot be the same as your current password.';
-      errEl.classList.add('show'); return;
-    }
-
-    if (userIndex !== -1) {
-      allUsers[userIndex].password = newPass;
-      saveUsers(allUsers);
-    }
-
-    errEl.classList.remove('show');
-    closeForgotPassword();
-    const loginErr = document.getElementById('login-error');
-    loginErr.textContent = '✅ Password reset successfully! Please log in.';
-    loginErr.style.color = 'var(--green)';
-    loginErr.classList.add('show');
-    setTimeout(() => { loginErr.classList.remove('show'); loginErr.style.color = ''; }, 4000);
-  }
-
-  // Close forgot modal when clicking backdrop
-  document.getElementById('forgotModal').addEventListener('click', function(e) {
-    if (e.target === this) closeForgotPassword();
-  });
-
-  // ===== YOUR UI FUNCTIONS =====
-
-  // Bridge for teammate's showLogin() / showRegister()
-  function showLogin()    { switchTab('login');    }
-  function showRegister() { switchTab('register'); }
 
   function loginUser(user) {
     currentUser = user;
-    workouts = JSON.parse(localStorage.getItem('ft_workouts_' + user.email) || '[]');
-    localStorage.setItem('ft_session', user.email);
+    workouts    = JSON.parse(localStorage.getItem('ft_workouts_' + user.email) || '[]');
 
+    // Sidebar
     document.getElementById('sidebar').classList.add('visible');
     document.getElementById('main-content').classList.add('with-sidebar');
     document.getElementById('user-chip').style.display = 'flex';
     document.getElementById('user-avatar').textContent = user.name.charAt(0).toUpperCase();
     document.getElementById('user-name-label').textContent = user.name;
-
-    document.getElementById('nav-links').innerHTML = `
-      <div class="nav-label">Menu</div>
-      <button class="nav-btn" onclick="showPage('home')" id="nav-home">
-        <span class="nav-icon">🏠</span> Home
-      </button>
-      <button class="nav-btn" onclick="showPage('schedule')" id="nav-schedule">
-        <span class="nav-icon">📅</span> Schedule
-      </button>
-      <button class="nav-btn" onclick="showPage('report')" id="nav-report">
-        <span class="nav-icon">📊</span> Report
-      </button>
-    `;
-
     document.getElementById('logout-btn').classList.add('show-btn');
+
+    buildNav();
     showPage('home');
   }
 
   function doLogout() {
-    currentUser = null; workouts = [];
     localStorage.removeItem('ft_session');
+    currentUser = null; workouts = [];
     document.getElementById('sidebar').classList.remove('visible');
     document.getElementById('main-content').classList.remove('with-sidebar');
     document.getElementById('user-chip').style.display = 'none';
-    document.getElementById('nav-links').innerHTML = '';
     document.getElementById('logout-btn').classList.remove('show-btn');
+    document.getElementById('nav-links').innerHTML = '';
     showPage('auth');
   }
 
-  function saveWorkouts() {
-    if (currentUser) localStorage.setItem('ft_workouts_' + currentUser.email, JSON.stringify(workouts));
+  function togglePassword(id, eye) {
+    const input = document.getElementById(id);
+    if (input.type === 'password') { input.type = 'text'; eye.textContent = '🙈'; }
+    else                           { input.type = 'password'; eye.textContent = '👁️'; }
   }
 
-  function showPage(id) {
+  // Forgot Password
+  function openForgotPassword() {
+    document.getElementById('forgotModal').classList.add('open');
+    document.getElementById('emailStep').style.display = 'block';
+    document.getElementById('resetStep').style.display = 'none';
+    document.getElementById('forgotEmail').value = '';
+    document.getElementById('forgot-email-error').classList.remove('show');
+  }
+  function closeForgotPassword() { document.getElementById('forgotModal').classList.remove('open'); }
+  function verifyForgotEmail() {
+    const email = document.getElementById('forgotEmail').value.trim();
+    const errEl = document.getElementById('forgot-email-error');
+    errEl.classList.remove('show');
+    if (!email) { errEl.textContent = 'Please enter your email.'; errEl.classList.add('show'); return; }
+    if (!users.find(u => u.email === email)) { errEl.textContent = 'No account found with this email.'; errEl.classList.add('show'); return; }
+    document.getElementById('emailStep').style.display = 'none';
+    document.getElementById('resetStep').style.display = 'block';
+    document.getElementById('newPassword').value = '';
+    document.getElementById('confirmNewPassword').value = '';
+    document.getElementById('forgot-reset-error').classList.remove('show');
+  }
+  function resetPassword() {
+    const email   = document.getElementById('forgotEmail').value.trim();
+    const newPw   = document.getElementById('newPassword').value;
+    const confPw  = document.getElementById('confirmNewPassword').value;
+    const errEl   = document.getElementById('forgot-reset-error');
+    errEl.classList.remove('show');
+    if (!newPw || !confPw)  { errEl.textContent = 'Please fill in both fields.'; errEl.classList.add('show'); return; }
+    if (newPw !== confPw)   { errEl.textContent = 'Passwords do not match.'; errEl.classList.add('show'); return; }
+    if (newPw.length < 6)   { errEl.textContent = 'Password must be at least 6 characters.'; errEl.classList.add('show'); return; }
+    const user = users.find(u => u.email === email);
+    if (user) {
+      user.password = newPw;
+      localStorage.setItem('ft_users', JSON.stringify(users));
+    }
+    closeForgotPassword();
+    alert('Password reset successfully! Please log in.');
+  }
+
+  // ===== NAVIGATION =====
+  const NAV_ITEMS = [
+    { key: 'home',     label: 'Home',     icon: '🏠' },
+    { key: 'schedule', label: 'Schedule', icon: '📅' },
+    { key: 'report',   label: 'Report',   icon: '📊' },
+  ];
+
+  function buildNav() {
+    const nav = document.getElementById('nav-links');
+    nav.innerHTML = '';
+    NAV_ITEMS.forEach(item => {
+      const btn = document.createElement('button');
+      btn.className = 'nav-btn';
+      btn.dataset.page = item.key;
+      btn.innerHTML = `<span class="nav-icon">${item.icon}</span>${item.label}`;
+      btn.addEventListener('click', () => showPage(item.key));
+      nav.appendChild(btn);
+    });
+  }
+
+  function showPage(key) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('page-' + id).classList.add('active');
-    const btn = document.getElementById('nav-' + id);
-    if (btn) btn.classList.add('active');
-    if (id === 'home')     renderHome();
-    if (id === 'schedule') renderSchedule();
-    if (id === 'report')   renderReport();
+    const page = document.getElementById('page-' + key);
+    if (page) page.classList.add('active');
+    const navBtn = document.querySelector(`.nav-btn[data-page="${key}"]`);
+    if (navBtn) navBtn.classList.add('active');
+    if (key === 'home')     renderHome();
+    if (key === 'schedule') renderSchedule();
+    if (key === 'report')   renderReport();
+  }
+
+  // ===== SAVE =====
+  function saveWorkouts() {
+    localStorage.setItem('ft_workouts_' + currentUser.email, JSON.stringify(workouts));
   }
 
   // ===== HOME =====
-  function getGreeting() {
-    const h = new Date().getHours();
-    if (h < 12) return 'Good Morning';
-    if (h < 17) return 'Good Afternoon';
-    return 'Good Evening';
-  }
-
-  function getTodayDayIndex() {
-    const d = new Date().getDay();
-    return d === 0 ? 6 : d - 1; // 0=Mon … 6=Sun
-  }
-
   function renderHome() {
-    // Greeting
-    document.getElementById('greeting-time').textContent = getGreeting();
-    const firstName = currentUser.name.split(' ')[0];
-    document.getElementById('greeting-name').textContent = `Welcome back, ${firstName}! 👋`;
+    const hour = new Date().getHours();
+    let greeting = hour < 12 ? 'Good Morning' : hour < 17 ? 'Good Afternoon' : 'Good Evening';
+    document.getElementById('greeting-time').textContent = greeting;
+    document.getElementById('greeting-name').textContent = 'Welcome back, ' + currentUser.name.split(' ')[0] + '!';
 
-    const todayIdx = getTodayDayIndex();
-    const todayName = DAYS[todayIdx];
-    const todayWorkouts = workouts.filter(w => w.dayIndex === todayIdx);
-    const todayDone = todayWorkouts.filter(w => w.done).length;
-    const subMessages = [
-      `You have ${todayWorkouts.length} workout${todayWorkouts.length !== 1 ? 's' : ''} scheduled for ${todayName}.`,
-      todayWorkouts.length === 0 ? `No workouts scheduled for today. Enjoy the rest!' ` : null
-    ];
-    document.getElementById('greeting-sub').textContent =
-      todayWorkouts.length > 0
-        ? `You have ${todayWorkouts.length} workout${todayWorkouts.length !== 1 ? 's' : ''} scheduled for ${todayName}.`
-        : `No workouts scheduled for today — rest up or add one!`;
+    const done      = workouts.filter(w => w.done);
+    const total     = workouts.length;
+    const totalMins = workouts.reduce((s, w) => s + w.duration, 0);
+    const pct       = total > 0 ? Math.round(done.length / total * 100) : 0;
 
-    // Stats
-    const done  = workouts.filter(w => w.done).length;
-    const total = workouts.length;
-    const mins  = workouts.filter(w => w.done).reduce((s, w) => s + w.duration, 0);
-    document.getElementById('home-stat-done').textContent  = done;
-    document.getElementById('home-stat-mins').textContent  = mins;
+    document.getElementById('home-stat-done').textContent  = done.length;
+    document.getElementById('home-stat-mins').textContent  = totalMins;
     document.getElementById('home-stat-total').textContent = total;
-
-    // Progress bar
-    const pct = total > 0 ? Math.round(done / total * 100) : 0;
     document.getElementById('home-pct').textContent = pct + '%';
-    document.getElementById('home-pb').style.width = pct + '%';
+    document.getElementById('home-pb').style.width  = pct + '%';
+    document.getElementById('greeting-sub').textContent = `${done.length} of ${total} workout${total !== 1 ? 's' : ''} completed this period.`;
 
-    // Streak banner
+    // Streak
     const streakEl = document.getElementById('home-streak-area');
-    if (done >= 3) {
-      streakEl.innerHTML = `
-        <div class="streak-banner">
-          <div class="sb-icon">🔥</div>
-          <div class="sb-text">
-            <div class="sb-title">You're on a roll!</div>
-            <div class="sb-sub">${done} workout${done !== 1 ? 's' : ''} completed — keep it up!</div>
-          </div>
-        </div>
-      `;
+    const todayDone = workouts.filter(w => w.done && w.addedDate === getTodayDateStr()).length;
+    if (done.length > 0) {
+      streakEl.innerHTML = `<div class="streak-banner"><div class="sb-icon">🔥</div><div class="sb-text"><div class="sb-title">${done.length} workout${done.length !== 1 ? 's' : ''} completed!</div><div class="sb-sub">Keep up the great work.</div></div></div>`;
     } else {
       streakEl.innerHTML = '';
     }
 
-    // Today's workout list
-    const listEl = document.getElementById('home-today-list');
+    // Today's workouts
+    const todayIdx = getTodayDayIndex();
+    const todayWorkouts = workouts.filter(w => w.dayIndex === todayIdx);
+    const todayListEl = document.getElementById('home-today-list');
     if (todayWorkouts.length === 0) {
-      listEl.innerHTML = `
-        <div class="empty-state">No workouts for ${todayName}. 
-          <br><br>
-          <button class="btn-add" onclick="showPage('schedule'); openAddModal()" style="margin:0 auto;display:inline-block">+ Add Workout</button>
-        </div>`;
+      todayListEl.innerHTML = '<div class="empty-state">No workouts scheduled for today.</div>';
     } else {
-      listEl.innerHTML = `
+      todayListEl.innerHTML = `
         <div class="today-card">
           <div class="today-card-header">
-            <span class="tch-day">${todayName}</span>
-            <span class="tch-count">${todayDone}/${todayWorkouts.length} done</span>
+            <span class="tch-day">${DAYS[todayIdx]}</span>
+            <span class="tch-count">${todayWorkouts.filter(w=>w.done).length}/${todayWorkouts.length} done</span>
           </div>
           ${todayWorkouts.map(w => `
             <div class="today-workout-item${w.done ? ' done' : ''}">
               <div class="twi-dot"></div>
-              <div class="twi-name">${w.name}</div>
-              <div class="twi-dur">${w.duration} min</div>
+              <span class="twi-name">${w.icon ? w.icon + ' ' : ''}${w.name}</span>
+              <span class="twi-dur">${w.duration}m</span>
             </div>
           `).join('')}
-        </div>
-      `;
+        </div>`;
     }
   }
 
   // ===== SCHEDULE =====
-  function getWeekRange(offset) {
-    const now    = new Date();
-    const dow    = now.getDay() === 0 ? 6 : now.getDay() - 1;
-    const monday = new Date(now);
-    monday.setDate(now.getDate() - dow + offset * 7);
-    monday.setHours(0,0,0,0);
-    const sunday = new Date(monday);
-    sunday.setDate(monday.getDate() + 6);
-    sunday.setHours(23,59,59,999);
-    return { start: monday, end: sunday };
-  }
-
   function setWeekFilter(val, e) {
     weekFilter = val;
     document.querySelectorAll('#week-filter .filter-btn').forEach(b => b.classList.remove('active'));
-    e.target.classList.add('active');
+    if (e && e.target) e.target.classList.add('active');
     renderSchedule();
-  }
-
-  function filterByWeek(list) {
-    if (weekFilter === 'all') return list;
-    const offset = weekFilter === 'this' ? 0 : -1;
-    const { start, end } = getWeekRange(offset);
-    return list.filter(w => {
-      if (!w.addedDate) return weekFilter === 'this';
-      const d = new Date(w.addedDate);
-      return d >= start && d <= end;
-    });
   }
 
   function renderSchedule() {
     const dayFilter = document.getElementById('day-filter').value;
-    let filtered = filterByWeek(workouts);
-    if (dayFilter !== 'all') filtered = filtered.filter(w => w.dayIndex === parseInt(dayFilter));
+    let filtered = [...workouts];
 
-    const done  = workouts.filter(w => w.done).length;
-    const total = workouts.length;
-    const mins  = workouts.reduce((s, w) => s + w.duration, 0);
+    if (weekFilter === 'this') filtered = filtered.filter(w => isThisWeek(w.addedDate || getTodayDateStr()));
+    if (weekFilter === 'last') filtered = filtered.filter(w => isLastWeek(w.addedDate || getTodayDateStr()));
 
+    const done  = filtered.filter(w => w.done).length;
+    const total = filtered.length;
+    const mins  = filtered.reduce((s, w) => s + w.duration, 0);
     const statBar = document.getElementById('schedule-stat-bar');
-    statBar.style.display = total > 0 ? 'flex' : 'none';
-    document.getElementById('stat-done').textContent  = done;
-    document.getElementById('stat-total').textContent = total;
-    document.getElementById('stat-mins').textContent  = mins;
+    if (total > 0) {
+      statBar.style.display = 'flex';
+      document.getElementById('stat-done').textContent  = done;
+      document.getElementById('stat-total').textContent = total;
+      document.getElementById('stat-mins').textContent  = mins;
+    } else {
+      statBar.style.display = 'none';
+    }
 
     const listEl = document.getElementById('workout-list');
     if (filtered.length === 0) {
-      listEl.innerHTML = '<div class="empty-state">No workouts found. Try changing the filter or add a new workout.</div>';
+      listEl.innerHTML = '<div class="empty-state">No workouts found. Add one to get started!</div>';
       return;
     }
     listEl.innerHTML = '';
@@ -1088,9 +1075,10 @@
     div.innerHTML = `
       <button class="check-btn" onclick="toggleDone('${w.id}')">${w.done ? '✓' : ''}</button>
       <div class="workout-info">
-        <div class="workout-name">${w.name}</div>
-        <div class="workout-meta">${DAYS[w.dayIndex]} · ${w.duration} min</div>
+        <div class="workout-name">${w.icon ? w.icon + ' ' : ''}${w.name}</div>
+        <div class="workout-meta">${DAYS[w.dayIndex]} · ${w.duration} min${w.cat ? ' · ' + (CAT_LABELS[w.cat] || w.cat) : ''}</div>
       </div>
+      ${w.cat ? `<span class="workout-cat-badge">${CAT_LABELS[w.cat] || w.cat}</span>` : ''}
       <div class="workout-actions">
         <button class="action-btn" onclick="openEditModal('${w.id}')" title="Edit">✏️</button>
         <button class="action-btn delete" onclick="deleteWorkout('${w.id}')" title="Delete">🗑️</button>
@@ -1101,7 +1089,7 @@
 
   function toggleDone(id) {
     const w = workouts.find(x => x.id === id);
-    if (w) { w.done = !w.done; saveWorkouts(); renderSchedule(); }
+    if (w) { w.done = !w.done; saveWorkouts(); renderSchedule(); renderHome(); }
   }
 
   function deleteWorkout(id) {
@@ -1109,58 +1097,143 @@
     saveWorkouts(); renderSchedule();
   }
 
-  function openAddModal() {
+  // ===== MODAL (Iteration2 rich logic) =====
+  function openAddModal(prefillDayIndex) {
     editingId = null;
-    document.getElementById('modal-title').textContent = 'Add Workout';
-    document.getElementById('modal-confirm-btn').textContent = 'Add Workout';
-    document.getElementById('modal-exercise').selectedIndex = 0;
-    document.getElementById('modal-duration').value = 30;
-    document.getElementById('modal-day').value = 0;
-    document.getElementById('modal-duration-error').classList.remove('show');
-    document.getElementById('modal-overlay').classList.add('open');
+    modalDayIndex = prefillDayIndex !== undefined ? prefillDayIndex : getTodayDayIndex();
+    selectedExercise = null;
+    selectedCat = 'strength';
+
+    document.getElementById('modal-title').textContent    = 'Add Workout';
+    document.getElementById('modal-subtitle').textContent = DAYS[modalDayIndex];
+    document.getElementById('custom-name').value          = '';
+    document.getElementById('duration-input').value       = 30;
+    document.getElementById('duration-input').classList.remove('error');
+    document.getElementById('duration-hint').textContent  = '';
+    document.getElementById('modal-add').textContent      = 'Add Workout';
+    document.getElementById('modal-add').disabled         = true;
+
+    renderCatTabs();
+    renderExercises();
+    document.getElementById('modal-backdrop').classList.add('open');
   }
 
   function openEditModal(id) {
     const w = workouts.find(x => x.id === id);
     if (!w) return;
     editingId = id;
-    document.getElementById('modal-title').textContent = 'Edit Workout';
-    document.getElementById('modal-confirm-btn').textContent = 'Save Changes';
-    document.getElementById('modal-day').value = w.dayIndex;
-    const sel = document.getElementById('modal-exercise');
-    for (let i = 0; i < sel.options.length; i++) {
-      if (sel.options[i].value === w.name) { sel.selectedIndex = i; break; }
-    }
-    document.getElementById('modal-duration').value = w.duration;
-    document.getElementById('modal-duration-error').classList.remove('show');
-    document.getElementById('modal-overlay').classList.add('open');
+    modalDayIndex    = w.dayIndex;
+    selectedCat      = w.cat || 'strength';
+    selectedExercise = { name: w.name, icon: w.icon || '🏃' };
+
+    document.getElementById('modal-title').textContent    = 'Edit Workout';
+    document.getElementById('modal-subtitle').textContent = DAYS[w.dayIndex];
+    document.getElementById('custom-name').value          = '';
+    document.getElementById('duration-input').value       = w.duration;
+    document.getElementById('duration-input').classList.remove('error');
+    document.getElementById('duration-hint').textContent  = '';
+    document.getElementById('modal-add').textContent      = 'Save Changes';
+    document.getElementById('modal-add').disabled         = false;
+
+    renderCatTabs();
+    renderExercises();
+    document.getElementById('modal-backdrop').classList.add('open');
   }
 
   function closeModal() {
-    document.getElementById('modal-overlay').classList.remove('open');
+    document.getElementById('modal-backdrop').classList.remove('open');
     editingId = null;
   }
 
-  function confirmModal() {
-    const dayIndex = parseInt(document.getElementById('modal-day').value);
-    const name     = document.getElementById('modal-exercise').value;
-    const rawVal   = document.getElementById('modal-duration').value;
-    const duration = parseInt(rawVal);
-    const errEl    = document.getElementById('modal-duration-error');
-    if (rawVal === '' || isNaN(duration)) { errEl.textContent = 'Please enter a duration.'; errEl.classList.add('show'); return; }
-    if (duration < 1)   { errEl.textContent = 'Duration must be at least 1 minute.'; errEl.classList.add('show'); return; }
-    if (duration > 300) { errEl.textContent = 'Duration cannot exceed 300 minutes.'; errEl.classList.add('show'); return; }
-    errEl.classList.remove('show');
-    if (editingId) {
-      const w = workouts.find(x => x.id === editingId);
-      if (w) { w.dayIndex = dayIndex; w.name = name; w.duration = duration; }
-    } else {
-      workouts.push({ id: Date.now().toString(), dayIndex, name, duration, done: false, addedDate: new Date().toISOString().split('T')[0] });
-    }
-    saveWorkouts(); closeModal(); renderSchedule();
+  function renderCatTabs() {
+    const wrap = document.getElementById('cat-tabs');
+    wrap.innerHTML = '';
+    Object.keys(CAT_LABELS).forEach(cat => {
+      const btn = document.createElement('button');
+      btn.className = 'cat-tab' + (cat === selectedCat ? ' active' : '');
+      btn.textContent = CAT_LABELS[cat];
+      btn.addEventListener('click', () => {
+        selectedCat = cat; selectedExercise = null;
+        renderCatTabs(); renderExercises(); checkAdd();
+      });
+      wrap.appendChild(btn);
+    });
   }
 
-  document.getElementById('modal-overlay').addEventListener('click', function(e) {
+  function renderExercises() {
+    const g = document.getElementById('exercise-grid');
+    g.innerHTML = '';
+    EXERCISES[selectedCat].forEach(ex => {
+      const opt = document.createElement('div');
+      opt.className = 'exercise-option' + (selectedExercise && selectedExercise.name === ex.name ? ' selected' : '');
+      opt.innerHTML = `<span style="font-size:15px;margin-right:6px;line-height:1">${ex.icon}</span>${ex.name}`;
+      opt.addEventListener('click', () => {
+        selectedExercise = ex;
+        document.getElementById('custom-name').value = '';
+        renderExercises(); checkAdd();
+      });
+      g.appendChild(opt);
+    });
+  }
+
+  function validateDuration() {
+    const input = document.getElementById('duration-input');
+    const hint  = document.getElementById('duration-hint');
+    const val   = parseInt(input.value);
+    input.classList.remove('error');
+    if (input.value === '' || isNaN(val)) {
+      hint.textContent = 'Please enter a duration.';
+      input.classList.add('error'); return false;
+    }
+    if (val < 1)   { hint.textContent = 'Minimum is 1 minute.'; input.classList.add('error'); return false; }
+    if (val > 300) { hint.textContent = 'Maximum is 300 minutes.'; input.classList.add('error'); return false; }
+    hint.textContent = '';
+    return true;
+  }
+
+  function checkAdd() {
+    const hasExercise = selectedExercise || document.getElementById('custom-name').value.trim();
+    const durOk = validateDuration();
+    document.getElementById('modal-add').disabled = !(hasExercise && durOk);
+  }
+
+  document.getElementById('duration-input').addEventListener('input', () => {
+    validateDuration(); checkAdd();
+  });
+
+  document.getElementById('custom-name').addEventListener('input', () => {
+    if (document.getElementById('custom-name').value.trim()) selectedExercise = null;
+    renderExercises(); checkAdd();
+  });
+
+  document.getElementById('modal-add').addEventListener('click', () => {
+    if (!validateDuration()) return;
+    const customVal = document.getElementById('custom-name').value.trim();
+    const name      = customVal || (selectedExercise ? selectedExercise.name : '');
+    const icon      = customVal ? '🏆' : (selectedExercise ? selectedExercise.icon : '🏃');
+    const duration  = parseInt(document.getElementById('duration-input').value);
+
+    if (!name) return;
+
+    if (editingId) {
+      const w = workouts.find(x => x.id === editingId);
+      if (w) { w.dayIndex = modalDayIndex; w.name = name; w.icon = icon; w.duration = duration; w.cat = selectedCat; }
+    } else {
+      workouts.push({
+        id: Date.now().toString(),
+        dayIndex: modalDayIndex,
+        name, icon, duration,
+        cat: selectedCat,
+        done: false,
+        addedDate: getTodayDateStr()
+      });
+    }
+    saveWorkouts(); closeModal(); renderSchedule();
+  });
+
+  document.getElementById('modal-cancel').addEventListener('click', closeModal);
+  document.getElementById('modal-close').addEventListener('click', closeModal);
+  document.getElementById('modal-backdrop').addEventListener('click', function(e) {
     if (e.target === this) closeModal();
   });
 
@@ -1185,7 +1258,7 @@
         item.className = 'report-item';
         item.innerHTML = `
           <div class="report-day">${DAYS[w.dayIndex].slice(0,3)}</div>
-          <div class="report-name">${w.name}</div>
+          <div class="report-name">${w.icon ? w.icon + ' ' : ''}${w.name}</div>
           <div class="report-mins">${w.duration} min</div>
           <div class="done-badge">DONE</div>
         `;
@@ -1203,7 +1276,7 @@
     if (val > 500) { errEl.textContent = 'Please enter a realistic weight (max 500 kg).'; errEl.classList.add('show'); return; }
     errEl.classList.remove('show');
     const log = JSON.parse(localStorage.getItem('ft_weight_' + currentUser.email) || '[]');
-    log.unshift({ date: new Date().toISOString().split('T')[0], weight: val });
+    log.unshift({ date: getTodayDateStr(), weight: val });
     localStorage.setItem('ft_weight_' + currentUser.email, JSON.stringify(log));
     document.getElementById('weight-input').value = '';
     renderWeightLog();

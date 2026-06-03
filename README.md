@@ -1,9 +1,9 @@
 # Fitness Workout Tracking System
-This is a web-based Fitness Workout Tracking System designed to help users manage their workout activities in a more organized and convenient way. The system provides a smooth and user-friendly experience that allows users to plan workout schedules, track completed workouts and monitor personal fitness progress more efficiently. It aims to improve workout consistency, encourage healthier habits and support users in maintaining a more active lifestyle.
+This is a web-based Fitness Workout Tracking System designed to help users manage their workout activities in a more organized and convenient way. Users can create workout programs, manage completed workouts and measure their own fitness progress in a more efficiently way due to the system's seamless and user-friendly interface. It aims to help users maintain a more active lifestyle, promote healthier habits and increase workout frequency.
 
 ---
 
-**Student Information**:
+## Student Information:
 - Abbie Song (BAI_A2009F-2605003)
 - Goh Tse Thing (BAI_A2009F-2605002)
 - Cheng Shu Wen (BIT_A2201F-2509001)
@@ -21,14 +21,15 @@ This is a web-based Fitness Workout Tracking System designed to help users manag
 - Scrum Process Summary
 - Sprint Overview
 - GitHub Usage
+- Release Information
 - Individual Contributions
 
 ---
 
 ## Team Members and Roles
 | Name | Role | Responsibilities |
-|------|------|-----------------|
-| **Abbie** | Product Owner | 1. Defined project requirements and prioritized system features<br>2. Managed authentication and user system including login<br>3. Registration and user data handling |
+|------|------|------------|
+| **Abbie** | Product Owner | 1. Defined project requirements and prioritized system features<br>2. Managed authentication and user system including login, registration and user data handling<br>3. Maintained project documentation and coordinated sprint planning |
 | **TseThing** | Scrum Master | 1. Coordinated sprint workflow and team progress<br> 2. Managed UI design<br>3. Responsive layout<br>4. Filtering features and system integration testing |
 | **ShuWen** | Developer | 1. Developed workout tracking and reporting system including workout completion tracking, history records, summary reports<br>2. Weight tracking features |
 | **Fion** | Developer | 1. Developed workout scheduling system including add, edit, delete workout functions<br>2. Weekly schedule display |
@@ -37,6 +38,7 @@ This is a web-based Fitness Workout Tracking System designed to help users manag
 
 ## Problem Statement
 **Client Scenario:**
+
 Many individuals still rely on manual methods like notebooks, spreadsheets or memory to manage their workout routines and fitness progress. This often leads to several problems, including:
 - Difficult to organize the workout schedules effectively
 - Inconsistent workout tracking and progress monitoring
@@ -44,6 +46,7 @@ Many individuals still rely on manual methods like notebooks, spreadsheets or me
 - Difficulty in reviewing workout history and fitness improvements
 
 **Business Needs:**
+
 Users need a digital fitness workout tracking system that allows them to:
 - Manage workout schedules more efficiently
 - Track completed workouts and fitness activities
@@ -73,17 +76,17 @@ Users need a digital fitness workout tracking system that allows them to:
 
 ---
 ## System Overview
-The **Fitness Workout Tracking System** is a web based application developed to help users manage workout schedules and monitor fitness progress in a more organized and efficient way. The system replaces manual methods such as notebooks or memory by providing a centralized digital platform for fitness management.
+The **Fitness Workout Tracking System** is a web based application developed to help users manage workout schedules and monitor fitness progress in a more organized and efficient way. The system replaces manual methods like notebooks or memory by providing a centralized digital platform for fitness management.
 
 The system includes the following main functions:
 - User Registration and Login to securely access personal workout information.
-- Workout Schedule Management to create, edit, delete, and view weekly workout plans.
+- Workout Schedule Management to create, edit, delete and view weekly workout plans.
 - Workout Completion Tracking to record completed exercises and maintain consistency.
 - Workout History and Weekly Reports to review past activities and evaluate progress.
 - Weight Tracking to monitor physical changes over time.
 - Responsive Design to support access from both desktop and mobile devices.
 
-Overall, the system aims to provide users with a structured and convenient way to plan workouts, track fitness activities, and maintain a healthier lifestyle.
+Overall, the system aims to provide users with a structured and convenient way to plan workouts, track fitness activities and maintain a healthier lifestyle.
 
 ---
 
@@ -108,15 +111,8 @@ Overall, the system aims to provide users with a structured and convenient way t
 
 ✅ User Authentication system
 - User registration with full name, email and password
-- User Login functionality
-- User Logout functionality
-
-✅ Input Validation
-- Required field validation
-- Minimum password length validation
-- Duplicate email prevention
-- Invalid login credential detection
-- Error message display for failed actions
+- User login functionality
+- User logout functionality
 
 ✅ Workout Scheduling System
 - Add workout functionality
@@ -130,12 +126,11 @@ Overall, the system aims to provide users with a structured and convenient way t
 - Daily workout progress tracking
 - Workout completion status display
 - Workout history recording
-- Local storage data persistence
+- LocalStorage data persistence
 
 ✅ User Interface
 - Login and registration interface
 - Navigation between pages
-- Modal popup for adding workouts
 - Responsive and user-friendly layout
 
 
@@ -143,21 +138,16 @@ Overall, the system aims to provide users with a structured and convenient way t
 ✅ Enhanced Authentication & Security
 - Show/Hide password functionality
 - Forgot password and password reset feature
-- Strong password validation
-- Duplicate email detection
-- Improved form validation and error handling
+- Enhanced validation and error handling
+- Improved user feedback messages
 
 ✅ Enhanced Workout Scheduling System
 - Edit existing workouts
 - Delete workouts from schedule
-- Workout categorization system
-- Predefined exercise templates
 - Workout duration validation
 - Improved scheduling interface
 
-✅ Workout Tracking & Reporting Improvements
-- Workout completion tracking
-- Daily progress tracking
+✅ Enhanced Workout Tracking & Reporting
 - Weekly workout summary
 - Workout history records
 - Workout streak tracking
@@ -181,8 +171,8 @@ Overall, the system aims to provide users with a structured and convenient way t
 ### Steps to Run
 1. Download or clone the GitHub repository
 2. Open the project folder
-3. Navigate to the ??? folder
-4. Open the HTML file in a web browser
+3. Navigate to the `SE_Assignment` folder
+4. Open `index.html` in a web browser
 5. Register a new account or log in to access the system
 
 ### Testing the Features
@@ -199,7 +189,7 @@ Overall, the system aims to provide users with a structured and convenient way t
 
 **Data Persistence**
 - Add workouts and refresh the browser
-- Verify that user accounts and workout data remain available through Localstorage
+- Verify that user accounts and workout data remain available through LocalStorage
 
 ---
 
@@ -228,7 +218,7 @@ Our team used the Scrum framework to support iterative and incremental developme
 - GitHub Repository
 - GitHub Issues
 - GitHub Pull Requests
-- GitHub Projects Board
+- GitHub Releases
 - WeChat group communication
 
 ---
@@ -301,14 +291,40 @@ Our team used Git and GitHub to manage source code, track development progress a
 
 ---
 
+## Release Information
+
+### Iteration 1 Release
+**Tag**: v0.1-iteration1
+
+**Release Features**:
+- User Authentication System
+- Basic Input Validation
+- Workout Scheduling System
+- Basic Workout Tracking System
+- Basic User Interface
+
+### Iteration 2 Release
+**Tag**: v0.2-iteration2
+
+**Release Features**:
+- Enhanced authentication and security
+- Edit and delete workout functions
+- Enhanced workout tracking and reporting
+- Weight tracking functionality
+- User interface improvements
+- Responsive design enhancements
+
+---
+
 ## Individual Contributions
 ### Abbie (Product Owner)
 **Responsibilities**
-- Developed the Authentication and User System.
+- Defined project requirements and feature priorities
+- Coordinated user stories and sprint planning
+- Developed the Authentication and User System
 - Implemented user registration, login and logout functionality
 - Managed user data persistence using LocalStorage
 - Maintained and updated project documentation including README.md
-- Prioritized project requirements and managed the product backlog
 
 **Iteration Contributions**
 - Iteration 1: Developed the login and registration system

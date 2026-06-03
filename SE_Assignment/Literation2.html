@@ -286,6 +286,7 @@
     .report-name { flex: 1; font-size: 13px; font-weight: 500; }
     .report-mins { font-size: 12px; color: var(--text2); font-family: 'DM Sans', sans-serif; }
     .done-badge { background: rgba(52,201,122,0.15); color: var(--green); font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 20px; }
+    .progress-badge { background: rgba(240,169,64,0.15); color: var(--amber); font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 20px; }
 
     .weight-input-row { display: flex; gap: 8px; margin-bottom: 14px; }
     .weight-input-row input { flex: 1; padding: 9px 12px; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13px; font-family: 'DM Sans', sans-serif; color: var(--text); }
@@ -378,6 +379,16 @@
     .modal-custom-input:focus { border-color: var(--accent); }
     .modal-custom-input::placeholder { color: var(--text3); }
 
+    /* Day select */
+    .modal-day-select {
+      width: 100%; padding: 9px 12px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); background: var(--surface2);
+      font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--text);
+      outline: none; cursor: pointer; transition: border-color 0.15s;
+    }
+    .modal-day-select:focus { border-color: var(--accent); }
+    .modal-day-select option { background: var(--surface2); }
+
     /* Duration */
     .duration-row { display: flex; align-items: center; gap: 10px; }
     .duration-input {
@@ -403,20 +414,127 @@
     .btn-modal-secondary { background: transparent; color: var(--text2); }
     .btn-modal-secondary:hover { background: var(--surface2); color: var(--text); }
 
-    @media (max-width: 640px) {
+    /* ===== SIDEBAR TOGGLE BUTTON ===== */
+    .sidebar-toggle {
+      display: none;
+      position: fixed; top: 14px; left: 14px; z-index: 200;
+      width: 38px; height: 38px; border-radius: var(--radius-sm);
+      background: var(--surface); border: 1px solid var(--border2);
+      cursor: pointer; font-size: 18px; color: var(--text);
+      align-items: center; justify-content: center;
+      transition: background 0.2s, border-color 0.2s, box-shadow 0.2s, color 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      flex-shrink: 0;
+    }
+    .sidebar-toggle:hover { border-color: var(--accent); color: var(--accent); box-shadow: 0 2px 12px rgba(108,92,231,0.25); }
+    .sidebar-toggle.active { background: var(--surface2); border-color: var(--accent); color: var(--accent); }
+
+    /* Overlay backdrop for mobile sidebar */
+    .sidebar-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 35;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(2px);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .sidebar-overlay.open { display: block; opacity: 1; }
+
+    /* Sidebar slide-in animation for mobile */
+    .sidebar {
+      transition: transform 0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ===== TABLET (max 1024px) ===== */
+    @media (max-width: 1024px) {
       :root { --sidebar-w: 200px; }
-      .container { padding: 20px 16px 60px; }
-      .report-grid { grid-template-columns: 1fr 1fr; }
-      .workout-actions { opacity: 1; }
+      .container { max-width: 100%; padding: 28px 22px 60px; }
+    }
+
+    /* ===== MOBILE (max 768px) ===== */
+    @media (max-width: 768px) {
+      :root { --sidebar-w: 240px; }
+
+      /* Show hamburger button when logged in */
+      body.logged-in .sidebar-toggle { display: flex; }
+
+      /* Sidebar becomes overlay on mobile */
+      .sidebar {
+        transform: translateX(-100%);
+        box-shadow: none;
+      }
+      .sidebar.visible {
+        display: flex; /* keep visible class working */
+        transform: translateX(-100%); /* hidden by default on mobile */
+      }
+      .sidebar.visible.open {
+        transform: translateX(0);
+        box-shadow: 4px 0 24px rgba(0,0,0,0.35);
+      }
+
+      /* Main content doesn't shift on mobile */
+      .main-content.with-sidebar { margin-left: 0 !important; }
+
+      /* Shift theme toggle right to not overlap hamburger */
+      .theme-toggle { right: 14px; top: 14px; }
+
+      /* Content top padding to clear fixed toggle button */
+      .container { padding: 64px 16px 80px; max-width: 100%; }
+
+      /* Page header stacks nicely */
+      .page-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+
+      /* Stats */
       .home-stats-row { grid-template-columns: 1fr 1fr; }
       .home-stats-row .home-stat-card:last-child { grid-column: span 2; }
+
+      /* Report grid 2 columns */
+      .report-grid { grid-template-columns: 1fr 1fr; }
+
+      /* Quick actions single column */
       .quick-actions { grid-template-columns: 1fr; }
+
+      /* Always show workout action buttons on touch */
+      .workout-actions { opacity: 1; }
+
+      /* Filter bar scrolls horizontally */
+      .filter-bar { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; }
+      .filter-bar::-webkit-scrollbar { height: 3px; }
+
+      /* Stat bar wraps tighter */
+      .stat-bar { gap: 16px; }
+
+      /* Auth card full width */
+      .auth-card { padding: 24px 18px; }
+
+      /* Modal closer to bottom on mobile */
+      .modal-backdrop { align-items: flex-end; padding: 0; }
+      .modal {
+        border-radius: 14px 14px 0 0;
+        max-width: 100%;
+        max-height: 92vh;
+        overflow-y: auto;
+      }
+    }
+
+    /* ===== SMALL MOBILE (max 480px) ===== */
+    @media (max-width: 480px) {
+      .home-greeting h2 { font-size: 1.3rem; }
+      .report-grid { grid-template-columns: 1fr; }
+      .stat-bar { flex-direction: column; gap: 10px; }
+      .filter-group { font-size: 11px; }
+      .workout-name { font-size: 13px; }
+      .workout-cat-badge { display: none; }
+      .streak-banner { padding: 12px 14px; gap: 10px; }
+      .streak-banner .sb-icon { font-size: 22px; }
     }
   </style>
 </head>
 <body>
 
 <button class="theme-toggle" id="theme-toggle" title="Toggle light/dark mode" onclick="toggleTheme()">🌙</button>
+<button class="sidebar-toggle" id="sidebar-toggle" title="Toggle menu" onclick="toggleSidebar()">☰</button>
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
 
 <div class="app-layout">
 
@@ -520,7 +638,7 @@
 
         <div class="progress-bar-wrap">
           <div class="pb-header">
-            <span class="pb-label">Weekly Completion</span>
+            <span class="pb-label">Overall Completion</span>
             <span class="pb-pct" id="home-pct">0%</span>
           </div>
           <div class="pb-track"><div class="pb-fill" id="home-pb" style="width:0%"></div></div>
@@ -531,7 +649,7 @@
 
         <div class="home-section-title">Quick Actions</div>
         <div class="quick-actions">
-          <button class="qa-btn" onclick="showPage('schedule'); openAddModal()">
+          <button class="qa-btn" onclick="showPage('schedule'); setTimeout(openAddModal, 0)">
             <div class="qa-icon">➕</div>
             <div class="qa-text">
               <div class="qa-title">Add Workout</div>
@@ -672,6 +790,18 @@
         <input type="text" class="modal-custom-input" id="custom-name" placeholder="e.g. Jump rope, Cycling…">
       </div>
       <div class="modal-field">
+        <label>Day</label>
+        <select class="modal-day-select" id="modal-day-select">
+          <option value="0">Monday</option>
+          <option value="1">Tuesday</option>
+          <option value="2">Wednesday</option>
+          <option value="3">Thursday</option>
+          <option value="4">Friday</option>
+          <option value="5">Saturday</option>
+          <option value="6">Sunday</option>
+        </select>
+      </div>
+      <div class="modal-field">
         <label>Duration</label>
         <div class="duration-row">
           <input type="number" class="duration-input" id="duration-input" min="1" max="300" value="30">
@@ -700,6 +830,18 @@
     const isLight = document.documentElement.classList.toggle('light');
     document.getElementById('theme-toggle').textContent = isLight ? '☀️' : '🌙';
     localStorage.setItem('ft_theme', isLight ? 'light' : 'dark');
+  }
+
+  // ===== PASSWORD HASHING =====
+  async function hashPassword(password) {
+    const msgBuffer = new TextEncoder().encode(password);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 
   // ===== STATE =====
@@ -785,16 +927,20 @@
     return 0;
   }
 
+  function toDateOnly(d) {
+    return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  }
+
   function isThisWeek(isoDate) {
     const dates = getWeekDates(0);
-    const d = new Date(isoDate);
-    return d >= dates[0] && d <= dates[6];
+    const d = toDateOnly(new Date(isoDate.replace(/-/g, '/')));
+    return d >= toDateOnly(dates[0]) && d <= toDateOnly(dates[6]);
   }
 
   function isLastWeek(isoDate) {
     const dates = getWeekDates(-1);
-    const d = new Date(isoDate);
-    return d >= dates[0] && d <= dates[6];
+    const d = toDateOnly(new Date(isoDate.replace(/-/g, '/')));
+    return d >= toDateOnly(dates[0]) && d <= toDateOnly(dates[6]);
   }
 
   function getTodayDayIndex() {
@@ -802,9 +948,24 @@
     return d === 0 ? 6 : d - 1;
   }
 
+  function getDateForDayIndex(dayIndex) {
+    const offset = weekFilter === 'last' ? -1 : 0;
+    const dates = getWeekDates(offset);
+    return dates[dayIndex];
+  }
+
+  function formatDateLabel(date) {
+    const d = String(date.getDate()).padStart(2, '0');
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return months[date.getMonth()] + ' ' + d + ', ' + date.getFullYear();
+  }
+
   function getTodayDateStr() {
     const d = new Date();
-    return d.toISOString().split('T')[0];
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
   }
 
   // ===== INIT =====
@@ -833,31 +994,35 @@
     }
   }
 
-  function login() {
-    const email    = document.getElementById('loginEmail').value.trim();
+  async function login() {
+    const email    = document.getElementById('loginEmail').value.trim().toLowerCase();
     const password = document.getElementById('loginPassword').value;
     const errEl    = document.getElementById('login-error');
     errEl.classList.remove('show');
     if (!email || !password) { errEl.textContent = 'Please enter email and password.'; errEl.classList.add('show'); return; }
+    if (!isValidEmail(email)) { errEl.textContent = 'Please enter a valid email address.'; errEl.classList.add('show'); return; }
     const user = users.find(u => u.email === email);
-    if (!user)                { errEl.textContent = 'No account found with this email.'; errEl.classList.add('show'); return; }
-    if (user.password !== password) { errEl.textContent = 'Incorrect password.'; errEl.classList.add('show'); return; }
+    if (!user) { errEl.textContent = 'No account found with this email.'; errEl.classList.add('show'); return; }
+    const hashed = await hashPassword(password);
+    if (user.password !== hashed) { errEl.textContent = 'Incorrect password.'; errEl.classList.add('show'); return; }
     localStorage.setItem('ft_session', email);
     loginUser(user);
   }
 
-  function register() {
+  async function register() {
     const name     = document.getElementById('registerUsername').value.trim();
-    const email    = document.getElementById('registerEmail').value.trim();
+    const email    = document.getElementById('registerEmail').value.trim().toLowerCase();
     const password = document.getElementById('registerPassword').value;
     const confirm  = document.getElementById('confirmPassword').value;
     const errEl    = document.getElementById('reg-error');
     errEl.classList.remove('show');
     if (!name || !email || !password || !confirm) { errEl.textContent = 'Please fill in all fields.'; errEl.classList.add('show'); return; }
+    if (!isValidEmail(email)) { errEl.textContent = 'Please enter a valid email address.'; errEl.classList.add('show'); return; }
     if (password !== confirm)  { errEl.textContent = 'Passwords do not match.'; errEl.classList.add('show'); return; }
     if (password.length < 6)   { errEl.textContent = 'Password must be at least 6 characters.'; errEl.classList.add('show'); return; }
     if (users.find(u => u.email === email)) { errEl.textContent = 'An account with this email already exists.'; errEl.classList.add('show'); return; }
-    const user = { name, email, password };
+    const hashed = await hashPassword(password);
+    const user = { name, email, password: hashed };
     users.push(user);
     localStorage.setItem('ft_users', JSON.stringify(users));
     localStorage.setItem('ft_session', email);
@@ -875,6 +1040,7 @@
     document.getElementById('user-avatar').textContent = user.name.charAt(0).toUpperCase();
     document.getElementById('user-name-label').textContent = user.name;
     document.getElementById('logout-btn').classList.add('show-btn');
+    document.body.classList.add('logged-in');
 
     buildNav();
     showPage('home');
@@ -884,10 +1050,14 @@
     localStorage.removeItem('ft_session');
     currentUser = null; workouts = [];
     document.getElementById('sidebar').classList.remove('visible');
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sidebar-overlay').classList.remove('open');
+    document.getElementById('sidebar-toggle').classList.remove('active');
     document.getElementById('main-content').classList.remove('with-sidebar');
     document.getElementById('user-chip').style.display = 'none';
     document.getElementById('logout-btn').classList.remove('show-btn');
     document.getElementById('nav-links').innerHTML = '';
+    document.body.classList.remove('logged-in');
     showPage('auth');
   }
 
@@ -907,10 +1077,11 @@
   }
   function closeForgotPassword() { document.getElementById('forgotModal').classList.remove('open'); }
   function verifyForgotEmail() {
-    const email = document.getElementById('forgotEmail').value.trim();
+    const email = document.getElementById('forgotEmail').value.trim().toLowerCase();
     const errEl = document.getElementById('forgot-email-error');
     errEl.classList.remove('show');
     if (!email) { errEl.textContent = 'Please enter your email.'; errEl.classList.add('show'); return; }
+    if (!isValidEmail(email)) { errEl.textContent = 'Please enter a valid email address.'; errEl.classList.add('show'); return; }
     if (!users.find(u => u.email === email)) { errEl.textContent = 'No account found with this email.'; errEl.classList.add('show'); return; }
     document.getElementById('emailStep').style.display = 'none';
     document.getElementById('resetStep').style.display = 'block';
@@ -918,8 +1089,8 @@
     document.getElementById('confirmNewPassword').value = '';
     document.getElementById('forgot-reset-error').classList.remove('show');
   }
-  function resetPassword() {
-    const email   = document.getElementById('forgotEmail').value.trim();
+  async function resetPassword() {
+    const email   = document.getElementById('forgotEmail').value.trim().toLowerCase();
     const newPw   = document.getElementById('newPassword').value;
     const confPw  = document.getElementById('confirmNewPassword').value;
     const errEl   = document.getElementById('forgot-reset-error');
@@ -929,11 +1100,40 @@
     if (newPw.length < 6)   { errEl.textContent = 'Password must be at least 6 characters.'; errEl.classList.add('show'); return; }
     const user = users.find(u => u.email === email);
     if (user) {
-      user.password = newPw;
+      user.password = await hashPassword(newPw);
       localStorage.setItem('ft_users', JSON.stringify(users));
     }
     closeForgotPassword();
     alert('Password reset successfully! Please log in.');
+  }
+
+  // ===== SIDEBAR TOGGLE (mobile) =====
+  function isMobile() { return window.innerWidth <= 768; }
+
+  function toggleSidebar() {
+    const sidebar  = document.getElementById('sidebar');
+    const overlay  = document.getElementById('sidebar-overlay');
+    const toggleBtn = document.getElementById('sidebar-toggle');
+    const isOpen = sidebar.classList.contains('open');
+    if (isOpen) {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('open');
+      toggleBtn.classList.remove('active');
+      toggleBtn.textContent = '☰';
+    } else {
+      sidebar.classList.add('open');
+      overlay.classList.add('open');
+      toggleBtn.classList.add('active');
+      toggleBtn.textContent = '✕';
+    }
+  }
+
+  function closeSidebar() {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sidebar-overlay').classList.remove('open');
+    const toggleBtn = document.getElementById('sidebar-toggle');
+    toggleBtn.classList.remove('active');
+    toggleBtn.textContent = '☰';
   }
 
   // ===== NAVIGATION =====
@@ -966,7 +1166,21 @@
     if (key === 'home')     renderHome();
     if (key === 'schedule') renderSchedule();
     if (key === 'report')   renderReport();
+    // Auto-close sidebar on mobile after nav
+    if (isMobile()) closeSidebar();
   }
+
+  // Handle window resize — restore sidebar on desktop, clean up on mobile
+  window.addEventListener('resize', () => {
+    if (!currentUser) return;
+    if (!isMobile()) {
+      // On desktop: ensure sidebar is always visible, no overlay
+      document.getElementById('sidebar').classList.remove('open');
+      document.getElementById('sidebar-overlay').classList.remove('open');
+      document.getElementById('sidebar-toggle').classList.remove('active');
+      document.getElementById('sidebar-toggle').textContent = '☰';
+    }
+  });
 
   // ===== SAVE =====
   function saveWorkouts() {
@@ -977,10 +1191,19 @@
   function calcStreak() {
     const h = JSON.parse(localStorage.getItem('ft_history_' + currentUser.email) || '[]');
     if (h.length === 0) return 0;
-    const dates = h.map(x => new Date(x.date)).sort((a, b) => b - a);
+    // Deduplicate dates before computing streak
+    const uniqueDates = [...new Set(h.map(x => x.date))]
+      .map(d => new Date(d.replace(/-/g, '/')))
+      .sort((a, b) => b - a);
+    const today = new Date(); today.setHours(0,0,0,0);
+    const yesterday = new Date(today); yesterday.setDate(today.getDate() - 1);
+    const newest = new Date(uniqueDates[0]); newest.setHours(0,0,0,0);
+    if (newest < yesterday) return 0;
     let streak = 1;
-    for (let i = 0; i < dates.length - 1; i++) {
-      const diff = (dates[i] - dates[i + 1]) / (1000 * 60 * 60 * 24);
+    for (let i = 0; i < uniqueDates.length - 1; i++) {
+      const a = new Date(uniqueDates[i]); a.setHours(0,0,0,0);
+      const b = new Date(uniqueDates[i+1]); b.setHours(0,0,0,0);
+      const diff = (a - b) / (1000 * 60 * 60 * 24);
       if (Math.round(diff) === 1) { streak++; } else { break; }
     }
     return streak;
@@ -989,10 +1212,18 @@
   function saveHistory() {
     const today = getTodayDateStr();
     const h = JSON.parse(localStorage.getItem('ft_history_' + currentUser.email) || '[]');
-    if (!h.find(x => x.date === today)) {
-      h.unshift({ date: today, count: workouts.filter(w => w.done).length });
-      localStorage.setItem('ft_history_' + currentUser.email, JSON.stringify(h));
+    const existing = h.find(x => x.date === today);
+    const count = workouts.filter(w => w.done).length;
+    if (count === 0) {
+      // Remove today's entry if count dropped to zero
+      const idx = h.findIndex(x => x.date === today);
+      if (idx !== -1) h.splice(idx, 1);
+    } else if (existing) {
+      existing.count = count;
+    } else {
+      h.unshift({ date: today, count });
     }
+    localStorage.setItem('ft_history_' + currentUser.email, JSON.stringify(h));
   }
 
   function renderHistory() {
@@ -1018,7 +1249,7 @@
 
     const done      = workouts.filter(w => w.done);
     const total     = workouts.length;
-    const totalMins = workouts.reduce((s, w) => s + w.duration, 0);
+    const totalMins = done.reduce((s, w) => s + w.duration, 0);
     const pct       = total > 0 ? Math.round(done.length / total * 100) : 0;
 
     document.getElementById('home-stat-done').textContent  = done.length;
@@ -1049,7 +1280,7 @@
       todayListEl.innerHTML = `
         <div class="today-card">
           <div class="today-card-header">
-            <span class="tch-day">${DAYS[todayIdx]}</span>
+            <span class="tch-day">${DAYS[todayIdx]} · ${formatDateLabel(new Date())}</span>
             <span class="tch-count">${todayWorkouts.filter(w=>w.done).length}/${todayWorkouts.length} done</span>
           </div>
           ${todayWorkouts.map(w => `
@@ -1092,21 +1323,25 @@
     }
 
     const listEl = document.getElementById('workout-list');
-    if (filtered.length === 0) {
-      listEl.innerHTML = '<div class="empty-state">No workouts found. Add one to get started!</div>';
-      return;
-    }
     listEl.innerHTML = '';
+
+    let hasAny = false;
     DAYS.forEach((day, i) => {
       if (dayFilter !== 'all' && parseInt(dayFilter) !== i) return;
       const dws = filtered.filter(w => w.dayIndex === i);
       if (!dws.length) return;
+      hasAny = true;
       const label = document.createElement('div');
       label.className = 'section-label';
-      label.textContent = day;
+      const dayDate = getDateForDayIndex(i);
+      label.textContent = day + ' · ' + formatDateLabel(dayDate);
       listEl.appendChild(label);
       dws.forEach(w => listEl.appendChild(buildCard(w)));
     });
+
+    if (!hasAny) {
+      listEl.innerHTML = '<div class="empty-state">No workouts found. Add one to get started!</div>';
+    }
   }
 
   function buildCard(w) {
@@ -1116,9 +1351,10 @@
       <button class="check-btn" onclick="toggleDone('${w.id}')">${w.done ? '✓' : ''}</button>
       <div class="workout-info">
         <div class="workout-name">${w.icon ? w.icon + ' ' : ''}${w.name}</div>
-        <div class="workout-meta">${DAYS[w.dayIndex]} · ${w.duration} min${w.cat ? ' · ' + (CAT_LABELS[w.cat] || w.cat) : ''}</div>
+        <div class="workout-meta">${DAYS[w.dayIndex]} · ${w.duration} min</div>
       </div>
       ${w.cat ? `<span class="workout-cat-badge">${CAT_LABELS[w.cat] || w.cat}</span>` : ''}
+      ${w.done ? `<span class="done-badge">DONE</span>` : `<span class="progress-badge">IN PROGRESS</span>`}
       <div class="workout-actions">
         <button class="action-btn" onclick="openEditModal('${w.id}')" title="Edit">✏️</button>
         <button class="action-btn delete" onclick="deleteWorkout('${w.id}')" title="Delete">🗑️</button>
@@ -1132,20 +1368,18 @@
     if (w) {
       w.done = !w.done;
       saveWorkouts();
-      // If all workouts for today are done, save to history
-      const todayIdx = getTodayDayIndex();
-      const todayWorkouts = workouts.filter(x => x.dayIndex === todayIdx);
-      if (todayWorkouts.length > 0 && todayWorkouts.every(x => x.done)) {
-        saveHistory();
-      }
+      saveHistory(); // Always sync history so streak stays accurate
       renderSchedule(); renderHome();
     }
   }
 
-  function deleteWorkout(id) {
-    workouts = workouts.filter(x => x.id !== id);
-    saveWorkouts(); renderSchedule();
-  }
+    function deleteWorkout(id) {
+        workouts = workouts.filter(x => x.id !== id);
+        saveWorkouts();
+        saveHistory();
+        renderSchedule();
+        renderHome();
+    }
 
   // ===== MODAL (Iteration2 rich logic) =====
   function openAddModal(prefillDayIndex) {
@@ -1155,7 +1389,8 @@
     selectedCat = 'strength';
 
     document.getElementById('modal-title').textContent    = 'Add Workout';
-    document.getElementById('modal-subtitle').textContent = DAYS[modalDayIndex];
+    document.getElementById('modal-subtitle').textContent = '';
+    document.getElementById('modal-day-select').value     = modalDayIndex;
     document.getElementById('custom-name').value          = '';
     document.getElementById('duration-input').value       = 30;
     document.getElementById('duration-input').classList.remove('error');
@@ -1176,9 +1411,11 @@
     selectedCat      = w.cat || 'strength';
     selectedExercise = { name: w.name, icon: w.icon || '🏃' };
 
+    const isPreset = Object.values(EXERCISES).flat().some(e => e.name === w.name);
     document.getElementById('modal-title').textContent    = 'Edit Workout';
-    document.getElementById('modal-subtitle').textContent = DAYS[w.dayIndex];
-    document.getElementById('custom-name').value          = '';
+    document.getElementById('modal-subtitle').textContent = '';
+    document.getElementById('modal-day-select').value     = w.dayIndex;
+    document.getElementById('custom-name').value          = isPreset ? '' : w.name;
     document.getElementById('duration-input').value       = w.duration;
     document.getElementById('duration-input').classList.remove('error');
     document.getElementById('duration-hint').textContent  = '';
@@ -1262,16 +1499,17 @@
     const name      = customVal || (selectedExercise ? selectedExercise.name : '');
     const icon      = customVal ? '🏆' : (selectedExercise ? selectedExercise.icon : '🏃');
     const duration  = parseInt(document.getElementById('duration-input').value);
+    const dayIndex  = parseInt(document.getElementById('modal-day-select').value);
 
     if (!name) return;
 
     if (editingId) {
       const w = workouts.find(x => x.id === editingId);
-      if (w) { w.dayIndex = modalDayIndex; w.name = name; w.icon = icon; w.duration = duration; w.cat = selectedCat; }
+      if (w) { w.dayIndex = dayIndex; w.name = name; w.icon = icon; w.duration = duration; w.cat = selectedCat; }
     } else {
       workouts.push({
         id: Date.now().toString(),
-        dayIndex: modalDayIndex,
+        dayIndex: dayIndex,
         name, icon, duration,
         cat: selectedCat,
         done: false,
@@ -1324,18 +1562,41 @@
   }
 
   function logWeight() {
-    const val   = parseFloat(document.getElementById('weight-input').value);
+    const input = document.getElementById('weight-input');
+    const val = parseFloat(input.value);
     const errEl = document.getElementById('weight-error');
-    if (isNaN(val) || document.getElementById('weight-input').value === '') { errEl.textContent = 'Please enter a weight.'; errEl.classList.add('show'); return; }
-    if (val <= 0)  { errEl.textContent = 'Weight must be greater than 0.'; errEl.classList.add('show'); return; }
-    if (val > 500) { errEl.textContent = 'Please enter a realistic weight (max 500 kg).'; errEl.classList.add('show'); return; }
+
+    if (isNaN(val)) {
+        errEl.textContent = 'Please enter a weight.';
+        errEl.classList.add('show');
+        return;
+    }
+
+    if (val < 20 || val > 300) {
+        errEl.textContent = 'Weight must be between 20 and 300 kg.';
+        errEl.classList.add('show');
+        return;
+    }
+
     errEl.classList.remove('show');
-    const log = JSON.parse(localStorage.getItem('ft_weight_' + currentUser.email) || '[]');
-    log.unshift({ date: getTodayDateStr(), weight: val });
-    localStorage.setItem('ft_weight_' + currentUser.email, JSON.stringify(log));
-    document.getElementById('weight-input').value = '';
+
+    const log = JSON.parse(
+        localStorage.getItem('ft_weight_' + currentUser.email) || '[]'
+    );
+
+    log.unshift({
+        date: getTodayDateStr(),
+        weight: val
+    });
+
+    localStorage.setItem(
+        'ft_weight_' + currentUser.email,
+        JSON.stringify(log)
+    );
+
+    input.value = '';
     renderWeightLog();
-  }
+}
 
   function renderWeightLog() {
     if (!currentUser) return;
